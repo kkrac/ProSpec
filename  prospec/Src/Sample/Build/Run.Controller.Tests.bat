@@ -1,1 +1,0 @@
-..\Build\nant.bat run_Controllers_tests -buildfile:Build\tests.Controllers.build
