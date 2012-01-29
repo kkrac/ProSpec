@@ -79,7 +79,10 @@ namespace ProSpec.Acceptance.UI.Web
         {
             InitializeServer();
 
-            InitializeBrowser();
+            if (BrowserScope == BrowserScope.Global)
+            {
+                InitializeBrowser();
+            }
         }
 
         /// <summary>
@@ -102,6 +105,10 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void SetupFeature()
         {
+            if (BrowserScope == BrowserScope.Feature)
+            {
+                InitializeBrowser();
+            }
         }
 
         /// <summary>
@@ -120,6 +127,10 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void SetupScenario()
         {
+            if (BrowserScope == BrowserScope.Scenario)
+            {
+                InitializeBrowser();
+            }
         }
 
         /// <summary>
