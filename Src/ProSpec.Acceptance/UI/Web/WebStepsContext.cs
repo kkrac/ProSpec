@@ -30,7 +30,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// <summary>
         /// Reference to the flow manager.
         /// </summary>
-        protected IFlowManager<Page> FlowManager
+        protected PageFlowManager FlowManager
         {
             get { return PageFlowManager.Current; }
         }
