@@ -27,21 +27,37 @@ namespace ProSpec.Acceptance.UI.Web
         /// <summary>
         /// Initializes the test fixture.
         /// </summary>
-        public WebTestFixtureSetup() : this(BrowserScope.Scenario) {}
+        public WebTestFixtureSetup() : this(BrowserScope.Scenario) { }
 
         private static BrowserScope BrowserScope;
+
+        private void InitializeServer()
+        {
+            IServer server = IoCProvider.Resolve<IServer>();
+
+            server.Start();
+
+            WebStepsContext.Current.Set<IServer>(server, ObjectLifeSpan.Global);
+        }
+
+        private void DisposeServer()
+        {
+            IServer server = WebStepsContext.Current.Get<IServer>(ObjectLifeSpan.Global);
+
+            IoCProvider.Release(server);
+
+            server.Stop();
+        }
 
         /// <summary>
         /// Initializes the browser.
         /// </summary>
         /// <returns></returns>
-        protected IBrowser InitializeBrowser()
+        protected void InitializeBrowser()
         {
             IBrowser browser = IoCProvider.Resolve<IBrowser>();
 
-            StoreBrowserInContext(browser);
-
-            return browser;
+            WebStepsContext.Current.Browser = browser;
         }
 
         /// <summary>
@@ -56,37 +72,14 @@ namespace ProSpec.Acceptance.UI.Web
             browser.Close();
         }
 
-        private static void StoreBrowserInContext(IBrowser browser)
-        {
-            if (BrowserScope == BrowserScope.Global)
-            {
-                WebStepsContext.Current.Set<IBrowser>(browser, ObjectLifeSpan.Global);
-            }
-            else if (BrowserScope == BrowserScope.Feature)
-            {
-                WebStepsContext.Current.Set<IBrowser>(browser, ObjectLifeSpan.Feature);
-            }
-            else if (BrowserScope == BrowserScope.Scenario)
-            {
-                WebStepsContext.Current.Set<IBrowser>(browser, ObjectLifeSpan.Scenario);
-            }
-        }
-
         /// <summary>
         /// Initializes components used throughout the execution of the tests.
         /// </summary>
         public virtual void SetupTests()
         {
-            IServer server = IoCProvider.Resolve<IServer>();
+            InitializeServer();
 
-            server.Start();
-
-            WebStepsContext.Current.Set<IServer>(server, ObjectLifeSpan.Global);
-
-            if (BrowserScope == BrowserScope.Global)
-            {
-                WebStepsContext.Current.Browser = InitializeBrowser();
-            }
+            InitializeBrowser();
         }
 
         /// <summary>
@@ -99,11 +92,7 @@ namespace ProSpec.Acceptance.UI.Web
                 DisposeBrowser();
             }
 
-            IServer server = WebStepsContext.Current.Get<IServer>(ObjectLifeSpan.Global);
-
-            IoCProvider.Release(server);
-
-            server.Stop();
+            DisposeServer();
 
             IoCProvider.Reset();
         }
@@ -113,10 +102,6 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void SetupFeature()
         {
-            if (BrowserScope == BrowserScope.Feature)
-            {
-                WebStepsContext.Current.Browser = InitializeBrowser();
-            }
         }
 
         /// <summary>
@@ -135,10 +120,6 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void SetupScenario()
         {
-            if (BrowserScope == BrowserScope.Scenario)
-            {
-                WebStepsContext.Current.Browser = InitializeBrowser();
-            }
         }
 
         /// <summary>
