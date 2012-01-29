@@ -13,19 +13,17 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         protected Page()
         {
-            IServer server = WebStepsContext.Current.Get<IServer>(ObjectLifeSpan.Global);
+            IServer server = WebStepsContext.Current.Server;
 
             Uri = new Uri(server.RootUrl + RelativeUrl).ToString();
 
             RawUrl = Uri;
         }
 
-        private const string ID = "$__CurrentPage";
-
         internal static Page Current
         {
-            get { return Context.Get<Page>(ID); }
-            set { Context.Set<Page>(ID, value); }
+            get { return Context.Get<Page>(); }
+            set { Context.Set<Page>(value); }
         }
 
         private static WebStepsContext Context

@@ -11,8 +11,7 @@ namespace ProSpec.Acceptance.UI.Web
     /// </summary>
     public class PageFlowManager : IFlowManager<Page>
     {
-        private bool flowAlreadyStarted;
-        private const string ID = "$__CurrentFlowManager";
+        private bool isFlowStarted;
 
         /// <summary>
         /// 
@@ -21,14 +20,14 @@ namespace ProSpec.Acceptance.UI.Web
         {
             get
             {
-                PageFlowManager flow = Context.Get<PageFlowManager>(ID);
+                PageFlowManager flow = Context.Get<PageFlowManager>();
 
                 if (flow == null)
                 {
-                    Context.Set<PageFlowManager>(ID, new PageFlowManager());
+                    Context.Set<PageFlowManager>(new PageFlowManager());
                 }
 
-                return Context.Get<PageFlowManager>(ID);
+                return Context.Get<PageFlowManager>();
             }
         }
 
@@ -64,7 +63,7 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal Page Load(Type pageType, bool navigateToPage, bool startingFlow, string rawUrl)
         {
-            Check.Require(!startingFlow || !flowAlreadyStarted, "Flow has already been started!");
+            Check.Require(!startingFlow || !isFlowStarted, "Flow has already been started!");
              
             Page page = LoadWithoutNavigating(pageType) as Page;
 
@@ -73,11 +72,11 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal Page Load(Page page, bool navigateToPage, bool startingFlow, string rawUrl)
         {
-            Check.Require(!startingFlow || !flowAlreadyStarted, "Flow has already been started!");
+            Check.Require(!startingFlow || !isFlowStarted, "Flow has already been started!");
             
             if (startingFlow)
             {
-                flowAlreadyStarted = true;
+                isFlowStarted = true;
             }
             else
             {   //if not starting flow, assumes the rawUrl was explicitly passed and sets it to the page

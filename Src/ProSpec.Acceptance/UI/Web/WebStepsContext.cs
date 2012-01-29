@@ -1,4 +1,5 @@
 ﻿using TechTalk.SpecFlow;
+using ProSpec.Hosting;
 
 namespace ProSpec.Acceptance.UI.Web
 {
@@ -33,6 +34,11 @@ namespace ProSpec.Acceptance.UI.Web
         protected PageFlowManager FlowManager
         {
             get { return PageFlowManager.Current; }
+        }
+
+        internal IServer Server
+        {
+            get { return Current.Get<IServer>(ObjectLifeSpan.Global); }
         }
 
         internal IBrowser Browser
