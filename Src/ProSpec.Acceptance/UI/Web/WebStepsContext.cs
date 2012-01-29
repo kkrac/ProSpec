@@ -38,7 +38,7 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal IServer Server
         {
-            get { return Current.Get<IServer>(ObjectLifeSpan.Global); }
+            get { return Get<IServer>(ObjectLifeSpan.Global); }
         }
 
         internal IBrowser Browser
