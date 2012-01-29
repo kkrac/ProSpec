@@ -43,6 +43,27 @@ namespace ProSpec.Acceptance
         }
 
         /// <summary>
+        /// Gets an object from the scenario context.
+        /// </summary>
+        /// <typeparam name="T">Type of the object to retrieve</typeparam>
+        /// <returns>Object of generic type T</returns>
+        public T Get<T>()
+        {
+            return Get<T>(ObjectLifeSpan.Scenario);
+        }
+
+        /// <summary>
+        /// Gets an object from the scenario context.
+        /// </summary>
+        /// <typeparam name="T">Type of the object to retrieve</typeparam>
+        /// <param name="key">Key of the object stored in the context</param>
+        /// <returns>Object of generic type T</returns>
+        public T Get<T>(string key)
+        {
+            return Get<T>(key, ObjectLifeSpan.Scenario);
+        }
+
+        /// <summary>
         /// Gets an object with a specific life span from the context.
         /// </summary>
         /// <typeparam name="T">Type of the object to retrieve</typeparam>
@@ -77,6 +98,37 @@ namespace ProSpec.Acceptance
             }
 
             return default(T);
+        }
+
+        /// <summary>
+        /// Stores an object in the scenario context.
+        /// </summary>
+        /// <typeparam name="T">Type of the object to store</typeparam>
+        /// <param name="data">Reference to the object to store in the context</param>
+        public void Set<T>(T data)
+        {
+            Set<T>(data, ObjectLifeSpan.Scenario);
+        }
+
+        /// <summary>
+        /// Stores an object in the scenario context.
+        /// </summary>
+        /// <typeparam name="T">Type of the object to store</typeparam>
+        /// <param name="key">Key with which the object is stored in the context</param>
+        /// <param name="data">Reference to the object to store in the context</param>
+        public void Set<T>(string key, T data)
+        {
+            Set<T>(key, data, ObjectLifeSpan.Scenario);
+        }
+
+        /// <summary>
+        /// Stores an object in the scenario context.
+        /// </summary>
+        /// <typeparam name="T">Type of the object to store</typeparam>
+        /// <param name="func">Function executed to store the object in the context</param>
+        public void Set<T>(Func<T> func)
+        {
+            Set<T>(func(), ObjectLifeSpan.Scenario);
         }
 
         /// <summary>

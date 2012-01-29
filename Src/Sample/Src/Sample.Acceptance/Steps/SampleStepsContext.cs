@@ -10,8 +10,8 @@ namespace Sample.Acceptance.Steps
 
         protected ISampleUser CurrentUser
         {
-            get { return Get<ISampleUser>(CURRENT_USER, ObjectLifeSpan.Scenario); }
-            set { Set<ISampleUser>(CURRENT_USER, value, ObjectLifeSpan.Scenario); }
+            get { return Get<ISampleUser>(CURRENT_USER); }
+            set { Set<ISampleUser>(CURRENT_USER, value); }
         }
     }
 }

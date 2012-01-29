@@ -24,8 +24,8 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal static Page Current
         {
-            get { return Context.Get<Page>(ID, ObjectLifeSpan.Scenario); }
-            set { Context.Set<Page>(ID, value, ObjectLifeSpan.Scenario); }
+            get { return Context.Get<Page>(ID); }
+            set { Context.Set<Page>(ID, value); }
         }
 
         private static WebStepsContext Context
