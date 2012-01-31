@@ -61,16 +61,16 @@ namespace ProSpec.Acceptance.UI.Web
             return (T)Load(typeof(T), navigateToPage, startingFlow, string.Empty);
         }
 
-        internal Page Load(Type pageType, bool navigateToPage, bool startingFlow, string rawUrl)
+        internal Page Load(Type pageType, bool navigateToPage, bool startingFlow, string additionalParameters)
         {
             Check.Require(!startingFlow || !isFlowStarted, "Flow has already been started!");
              
             Page page = LoadWithoutNavigating(pageType) as Page;
 
-            return Load(page, navigateToPage, startingFlow, rawUrl);
+            return Load(page, navigateToPage, startingFlow, additionalParameters);
         }
 
-        internal Page Load(Page page, bool navigateToPage, bool startingFlow, string rawUrl)
+        internal Page Load(Page page, bool navigateToPage, bool startingFlow, string additionalParameters)
         {
             Check.Require(!startingFlow || !isFlowStarted, "Flow has already been started!");
             
@@ -79,8 +79,8 @@ namespace ProSpec.Acceptance.UI.Web
                 isFlowStarted = true;
             }
             else
-            {   //if not starting flow, assumes the rawUrl was explicitly passed and sets it to the page
-                page.RawUrl = rawUrl;
+            {
+                page.RawUrl += additionalParameters;
             }
 
             if (navigateToPage)

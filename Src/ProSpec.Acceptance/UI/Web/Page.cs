@@ -127,9 +127,7 @@ namespace ProSpec.Acceptance.UI.Web
         {
             string parametersAsString = ParametersToString(RESTfulParameters, queryString);
 
-            RawUrl = string.Format("{0}{1}", this.Uri, parametersAsString);
-            
-            FlowManager.Load(this, true, false, RawUrl);
+            FlowManager.Load(this, true, false, parametersAsString);
 
             Validate();
         }

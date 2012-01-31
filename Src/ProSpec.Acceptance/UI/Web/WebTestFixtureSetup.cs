@@ -37,12 +37,12 @@ namespace ProSpec.Acceptance.UI.Web
 
             server.Start();
 
-            WebStepsContext.Current.Set<IServer>(server, ObjectLifeSpan.Global);
+            WebStepsContext.Current.Server = server;
         }
 
         private void DisposeServer()
         {
-            IServer server = WebStepsContext.Current.Get<IServer>(ObjectLifeSpan.Global);
+            IServer server = WebStepsContext.Current.Server;
 
             IoCProvider.Release(server);
 
