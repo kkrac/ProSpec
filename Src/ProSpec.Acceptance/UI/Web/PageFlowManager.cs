@@ -43,7 +43,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// <returns></returns>
         public T Load<T>() where T : Page
         {
-            return Load<T>(false, true);
+            return Load<T>(false);
         }
 
         /// <summary>
@@ -53,12 +53,12 @@ namespace ProSpec.Acceptance.UI.Web
         /// <returns></returns>
         public T LoadAndGo<T>() where T : Page
         {
-            return Load<T>(true, true);
+            return Load<T>(true);
         }
 
-        private T Load<T>(bool navigateToPage, bool startingFlow) where T : Page
+        private T Load<T>(bool navigateToPage) where T : Page
         {
-            return (T)Load(typeof(T), navigateToPage, startingFlow, string.Empty);
+            return (T)Load(typeof(T), navigateToPage, true, string.Empty);
         }
 
         internal Page Load(Type pageType, bool navigateToPage, bool startingFlow, string additionalParameters)
@@ -73,14 +73,12 @@ namespace ProSpec.Acceptance.UI.Web
         internal Page Load(Page page, bool navigateToPage, bool startingFlow, string additionalParameters)
         {
             Check.Require(!startingFlow || !isFlowStarted, "Flow has already been started!");
-            
+
+            page.RawUrl += additionalParameters;
+
             if (startingFlow)
             {
                 isFlowStarted = true;
-            }
-            else
-            {
-                page.RawUrl += additionalParameters;
             }
 
             if (navigateToPage)
