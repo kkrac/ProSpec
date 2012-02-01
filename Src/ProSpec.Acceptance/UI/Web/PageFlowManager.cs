@@ -14,14 +14,6 @@ namespace ProSpec.Acceptance.UI.Web
         private bool isFlowStarted;
 
         /// <summary>
-        /// Determines if it should verify that the status of the browser is 200 after navigating.
-        /// </summary>
-        public bool AlwaysVerifyBrowserStatusIsOK
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         public static PageFlowManager Current
@@ -59,11 +51,26 @@ namespace ProSpec.Acceptance.UI.Web
         /// <summary>
         /// Loads page and navigates to it.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="T">Type of page to return</typeparam>
+        /// <returns>Page</returns>
         public T LoadAndGo<T>() where T : Page
         {
-            return Load<T>(true);
+            return LoadAndGo<T>(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Loads page and navigates to it.
+        /// </summary>
+        /// <typeparam name="T">Type of page to return</typeparam>
+        /// <param name="expectedStatusCode">Expected HttpStatusCode once the request completes. By default, the expected status is HttpStatusCode.OK</param>
+        /// <returns>Page</returns>
+        public T LoadAndGo<T>(HttpStatusCode expectedStatusCode) where T : Page
+        {
+            T page = Load<T>(true);
+
+            ValidateBrowserStatus(expectedStatusCode);
+
+            return page;
         }
 
         private T Load<T>(bool navigateToPage) where T : Page
@@ -94,11 +101,6 @@ namespace ProSpec.Acceptance.UI.Web
             if (navigateToPage)
             {
                 Context.Browser.GoTo(page.RawUrl);
-
-                if (AlwaysVerifyBrowserStatusIsOK)
-                {
-                    ValidateBrowserStatus();
-                }
             }
 
             Context.Driver = page;
@@ -106,11 +108,11 @@ namespace ProSpec.Acceptance.UI.Web
             return page;
         }
 
-        private void ValidateBrowserStatus()
+        private void ValidateBrowserStatus(HttpStatusCode expectedStatusCode)
         {
             try
             {
-                Context.Browser.Status.ShouldEqual(HttpStatusCode.OK);
+                Context.Browser.Status.ShouldEqual(expectedStatusCode);
             }
             catch (EqualException ex)
             {

@@ -89,18 +89,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SharedLibs\NUnit\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="ProSpec.Acceptance, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Bin\ProSpec.Acceptance.dll</HintPath>
-    </Reference>
-    <Reference Include="ProSpec.Acceptance.UI.WatiNIntegration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Bin\ProSpec.Acceptance.UI.WatiNIntegration.dll</HintPath>
-    </Reference>
-    <Reference Include="ProSpec.Hosting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Bin\ProSpec.Hosting.dll</HintPath>
-    </Reference>
     <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SharedLibs\Rhino Mocks\Rhino.Mocks.dll</HintPath>
@@ -195,6 +183,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ProSpec.Acceptance.UI.WatiNIntegration\ProSpec.Acceptance.UI.WatiNIntegration.csproj">
+      <Project>{11936C35-248C-4F58-8960-19175FD3EA02}</Project>
+      <Name>ProSpec.Acceptance.UI.WatiNIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ProSpec.Acceptance\ProSpec.Acceptance.csproj">
+      <Project>{4CC85F28-49FC-430B-B6A5-6ED04177B2C6}</Project>
+      <Name>ProSpec.Acceptance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ProSpec.Hosting\ProSpec.Hosting.csproj">
+      <Project>{6F5FD66D-1D2C-4B30-B022-40798D23ECAC}</Project>
+      <Name>ProSpec.Hosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Configuration\Sample.Configuration.csproj">
       <Project>{256B7B7D-F850-48BB-B0A9-4B5248429FCF}</Project>
       <Name>Sample.Configuration</Name>
