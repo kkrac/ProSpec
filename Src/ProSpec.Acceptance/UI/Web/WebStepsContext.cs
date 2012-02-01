@@ -8,8 +8,6 @@ namespace ProSpec.Acceptance.UI.Web
     /// </summary>
     public class WebStepsContext : StepsContextBase<Page>
     {
-        private const string ID = "$__Context";
-
         /// <summary>
         /// Singleton instance of the context.
         /// </summary>
@@ -19,12 +17,16 @@ namespace ProSpec.Acceptance.UI.Web
             {
                 SpecFlowContext context = GetContext(ObjectLifeSpan.Global);
 
-                if (!context.ContainsKey(ID))
+                WebStepsContext webContext;
+
+                if (!context.TryGetValue<WebStepsContext>(out webContext))
                 {
-                    context.Set<WebStepsContext>(new WebStepsContext(), ID);
+                    webContext = new WebStepsContext();
+
+                    context.Set<WebStepsContext>(webContext);
                 }
 
-                return context[ID] as WebStepsContext;
+                return webContext;
             }
         }
 

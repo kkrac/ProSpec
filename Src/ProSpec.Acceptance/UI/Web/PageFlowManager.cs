@@ -20,14 +20,16 @@ namespace ProSpec.Acceptance.UI.Web
         {
             get
             {
-                PageFlowManager flow = Context.Get<PageFlowManager>();
+                PageFlowManager flowManager = Context.Get<PageFlowManager>();
 
-                if (flow == null)
+                if (flowManager == null)
                 {
-                    Context.Set<PageFlowManager>(new PageFlowManager());
+                    flowManager = new PageFlowManager();
+
+                    Context.Set<PageFlowManager>(flowManager);
                 }
 
-                return Context.Get<PageFlowManager>();
+                return flowManager;
             }
         }
 
