@@ -68,7 +68,7 @@ namespace ProSpec.Acceptance.UI.Web
         {
             T page = Load<T>(true);
 
-            ValidateBrowserStatus(expectedStatusCode);
+            AssertBrowserStatusIs(expectedStatusCode);
 
             return page;
         }
@@ -108,7 +108,7 @@ namespace ProSpec.Acceptance.UI.Web
             return page;
         }
 
-        private void ValidateBrowserStatus(HttpStatusCode expectedStatusCode)
+        private void AssertBrowserStatusIs(HttpStatusCode expectedStatusCode)
         {
             try
             {
