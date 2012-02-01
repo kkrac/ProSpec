@@ -108,7 +108,6 @@
     <Compile Include="IStepsContext.cs" />
     <Compile Include="ObjectLifeSpan.cs" />
     <Compile Include="StepsContextBase.cs" />
-    <Compile Include="UI\Web\BrowserScope.cs" />
     <Compile Include="UI\Web\IBrowser.cs" />
     <Compile Include="UI\Web\Page.cs" />
     <Compile Include="UI\Web\Page`1.cs" />

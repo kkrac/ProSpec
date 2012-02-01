@@ -1,7 +1,5 @@
-﻿using TwoK.Core.IoC;
-using ProSpec.Hosting;
-using TwoK.Core.DesignByContract;
-using TechTalk.SpecFlow;
+﻿using ProSpec.Hosting;
+using TwoK.Core.IoC;
 
 namespace ProSpec.Acceptance.UI.Web
 {
@@ -14,22 +12,20 @@ namespace ProSpec.Acceptance.UI.Web
         /// Initializes the test fixture.
         /// </summary>
         /// <param name="browserScope">Type of scope of the browser</param>
-        public WebTestFixtureSetup(BrowserScope browserScope)
+        public WebTestFixtureSetup(ObjectLifeSpan browserScope)
         {
-            Check.Require(browserScope == BrowserScope.Global ||
-                          browserScope == BrowserScope.Feature ||
-                          browserScope == BrowserScope.Scenario,
-              string.Format("There is no context available to support BrowserScope '{0}'", browserScope));
-
-            BrowserScope = browserScope;
+            Context.BrowserScope = browserScope;
         }
 
         /// <summary>
         /// Initializes the test fixture.
         /// </summary>
-        public WebTestFixtureSetup() : this(BrowserScope.Scenario) { }
+        public WebTestFixtureSetup() : this(ObjectLifeSpan.Scenario) { }
 
-        private static BrowserScope BrowserScope;
+        private WebStepsContext Context
+        {
+            get { return WebStepsContext.Current; }
+        }
 
         private void InitializeServer()
         {
@@ -37,12 +33,12 @@ namespace ProSpec.Acceptance.UI.Web
 
             server.Start();
 
-            WebStepsContext.Current.Server = server;
+            Context.Server = server;
         }
 
         private void DisposeServer()
         {
-            IServer server = WebStepsContext.Current.Server;
+            IServer server = Context.Server;
 
             IoCProvider.Release(server);
 
@@ -57,7 +53,7 @@ namespace ProSpec.Acceptance.UI.Web
         {
             IBrowser browser = IoCProvider.Resolve<IBrowser>();
 
-            WebStepsContext.Current.Browser = browser;
+            Context.Browser = browser;
         }
 
         /// <summary>
@@ -65,7 +61,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         protected void DisposeBrowser()
         {
-            IBrowser browser = WebStepsContext.Current.Browser;
+            IBrowser browser = Context.Browser;
 
             IoCProvider.Release(browser);
 
@@ -79,7 +75,7 @@ namespace ProSpec.Acceptance.UI.Web
         {
             InitializeServer();
 
-            if (BrowserScope == BrowserScope.Global)
+            if (Context.BrowserScope == ObjectLifeSpan.Global)
             {
                 InitializeBrowser();
             }
@@ -90,7 +86,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void TearDownTests()
         {
-            if (BrowserScope == BrowserScope.Global)
+            if (Context.BrowserScope == ObjectLifeSpan.Global)
             {
                 DisposeBrowser();
             }
@@ -105,7 +101,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void SetupFeature()
         {
-            if (BrowserScope == BrowserScope.Feature)
+            if (Context.BrowserScope == ObjectLifeSpan.Feature)
             {
                 InitializeBrowser();
             }
@@ -116,7 +112,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void TearDownFeature()
         {
-            if (BrowserScope == BrowserScope.Feature)
+            if (Context.BrowserScope == ObjectLifeSpan.Feature)
             {
                 DisposeBrowser();
             }
@@ -127,7 +123,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void SetupScenario()
         {
-            if (BrowserScope == BrowserScope.Scenario)
+            if (Context.BrowserScope == ObjectLifeSpan.Scenario)
             {
                 InitializeBrowser();
             }
@@ -138,7 +134,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         public virtual void TearDownScenario()
         {
-            if (BrowserScope == BrowserScope.Scenario)
+            if (Context.BrowserScope == ObjectLifeSpan.Scenario)
             {
                 DisposeBrowser();
             }

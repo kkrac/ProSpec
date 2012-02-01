@@ -12,8 +12,8 @@ namespace ProSpec.Acceptance.UI.WatiNIntegration
         /// Initializes the test fixture.
         /// </summary>
         /// <param name="browserSettings">Settingd of the browser</param>
-        /// <param name="browserScope">Type of scope of the browser</param>
-        public WatiNTestFixtureSetup(ISettings browserSettings, BrowserScope browserScope) : base(browserScope)
+        /// <param name="browserLifeSpan">Life span of the browser</param>
+        public WatiNTestFixtureSetup(ISettings browserSettings, ObjectLifeSpan browserLifeSpan) : base(browserLifeSpan)
         {
             WatiN.Core.Settings.Instance = browserSettings;
         }

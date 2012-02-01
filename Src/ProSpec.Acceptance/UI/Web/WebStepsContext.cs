@@ -1,5 +1,6 @@
-﻿using TechTalk.SpecFlow;
-using ProSpec.Hosting;
+﻿using ProSpec.Hosting;
+using TechTalk.SpecFlow;
+using TwoK.Core.DesignByContract;
 
 namespace ProSpec.Acceptance.UI.Web
 {
@@ -44,9 +45,32 @@ namespace ProSpec.Acceptance.UI.Web
             set { Set<IServer>(value, ObjectLifeSpan.Global); }
         }
 
-        internal IBrowser Browser
+        internal ObjectLifeSpan BrowserScope
         {
             get; set;
+        }
+
+        internal IBrowser Browser
+        {
+            get
+            {
+                switch (BrowserScope)
+                {
+                    case ObjectLifeSpan.Global: return Get<IBrowser>(ObjectLifeSpan.Global);
+                    case ObjectLifeSpan.Feature: return Get<IBrowser>(ObjectLifeSpan.Feature);
+                    case ObjectLifeSpan.Scenario: return Get<IBrowser>();
+                    default: return null;
+                }
+            }
+            set
+            {
+                switch (BrowserScope)
+                {
+                    case ObjectLifeSpan.Global: Set<IBrowser>(value, ObjectLifeSpan.Global); break;
+                    case ObjectLifeSpan.Feature: Set<IBrowser>(value, ObjectLifeSpan.Feature); break;
+                    case ObjectLifeSpan.Scenario: Set<IBrowser>(value); break;
+                }
+            }
         }
 
         /// <summary>

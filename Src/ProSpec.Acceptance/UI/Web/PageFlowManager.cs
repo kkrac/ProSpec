@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
-using TwoK.Core.DesignByContract;
 using Should;
 using Should.Sdk;
+using TwoK.Core.DesignByContract;
 
 namespace ProSpec.Acceptance.UI.Web
 {
@@ -12,6 +12,14 @@ namespace ProSpec.Acceptance.UI.Web
     public class PageFlowManager : IFlowManager<Page>
     {
         private bool isFlowStarted;
+
+        /// <summary>
+        /// Determines if it should verify that the status of the browser is 200 after navigating.
+        /// </summary>
+        public bool AlwaysVerifyBrowserStatusIsOK
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 
@@ -87,7 +95,10 @@ namespace ProSpec.Acceptance.UI.Web
             {
                 Context.Browser.GoTo(page.RawUrl);
 
-                ValidateNavigation();
+                if (AlwaysVerifyBrowserStatusIsOK)
+                {
+                    ValidateBrowserStatus();
+                }
             }
 
             Context.Driver = page;
@@ -95,7 +106,7 @@ namespace ProSpec.Acceptance.UI.Web
             return page;
         }
 
-        private void ValidateNavigation()
+        private void ValidateBrowserStatus()
         {
             try
             {
