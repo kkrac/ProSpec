@@ -80,9 +80,7 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal Page Load(Type pageType, bool navigateToPage, bool startingFlow, string additionalParameters)
         {
-            Check.Require(!startingFlow || !isFlowStarted, "Flow has already been started!");
-             
-            Page page = LoadWithoutNavigating(pageType) as Page;
+            Page page = CreatePage(pageType) as Page;
 
             return Load(page, navigateToPage, startingFlow, additionalParameters);
         }
@@ -134,7 +132,7 @@ namespace ProSpec.Acceptance.UI.Web
             }
         }
 
-        private Page LoadWithoutNavigating(Type pageType)
+        private Page CreatePage(Type pageType)
         {
             Page page = Activator.CreateInstance(pageType) as Page;
 
@@ -149,7 +147,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// <param name="parameters"></param>
         public void Forward<TPage>(Page source, string parameters) where TPage : Page
         {
-            Page successPage = LoadWithoutNavigating(typeof(TPage));
+            Page successPage = CreatePage(typeof(TPage));
 
             successPage.RawUrl += parameters;
 
@@ -164,8 +162,8 @@ namespace ProSpec.Acceptance.UI.Web
         /// <param name="parameters"></param>
         public void Forward<TSuccessPage, TErrorPage>(string parameters) where TSuccessPage : Page where TErrorPage : Page
         {
-            TSuccessPage successPage = (TSuccessPage)LoadWithoutNavigating(typeof(TSuccessPage));
-            TErrorPage errorPage = (TErrorPage)LoadWithoutNavigating(typeof(TErrorPage));
+            TSuccessPage successPage = (TSuccessPage)CreatePage(typeof(TSuccessPage));
+            TErrorPage errorPage = (TErrorPage)CreatePage(typeof(TErrorPage));
 
             successPage.RawUrl += parameters;
 
@@ -186,8 +184,8 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal void Forward(Type successPageType, Type errorPageType, string parameters)
         {
-            Page successPage = LoadWithoutNavigating(successPageType);
-            Page errorPage = LoadWithoutNavigating(errorPageType);
+            Page successPage = CreatePage(successPageType);
+            Page errorPage = CreatePage(errorPageType);
 
             successPage.RawUrl += parameters;
 
