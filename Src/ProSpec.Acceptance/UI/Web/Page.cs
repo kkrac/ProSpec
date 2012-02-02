@@ -98,7 +98,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// <returns>true if the page contains the text, otherwise false</returns>
         public bool ContainsText(string text)
         {
-            return WebStepsContext.Current.Browser.Text.Contains(text);
+            return Context.Browser.Text.Contains(text);
         }
 
         /// <summary>
