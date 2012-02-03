@@ -1,4 +1,5 @@
 ﻿using ProSpec.Acceptance.UI.Web;
+using WatiN.Core;
 using WatiN.Core.Interfaces;
 
 namespace ProSpec.Acceptance.UI.WatiNIntegration
@@ -15,7 +16,7 @@ namespace ProSpec.Acceptance.UI.WatiNIntegration
         /// <param name="browserLifeSpan">Life span of the browser</param>
         public WatiNTestFixtureSetup(ISettings browserSettings, ObjectLifeSpan browserLifeSpan) : base(browserLifeSpan)
         {
-            WatiN.Core.Settings.Instance = browserSettings;
+            Settings.Instance = browserSettings;
         }
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace ProSpec.Acceptance.UI.WatiNIntegration
         /// <param name="browserSettings">Settings of the browser</param>
         public WatiNTestFixtureSetup(ISettings browserSettings)
         {
-            WatiN.Core.Settings.Instance = browserSettings;
+            Settings.Instance = browserSettings;
         }
     }
 }
