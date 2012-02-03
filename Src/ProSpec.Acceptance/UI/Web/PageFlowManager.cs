@@ -80,7 +80,7 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal Page Load(Type pageType, bool navigateToPage, bool startingFlow, string additionalParameters)
         {
-            Page page = CreatePage(pageType) as Page;
+            Page page = CreatePage(pageType);
 
             return Load(page, navigateToPage, startingFlow, additionalParameters);
         }
