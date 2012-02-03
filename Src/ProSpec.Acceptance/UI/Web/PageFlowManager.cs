@@ -172,13 +172,13 @@ namespace ProSpec.Acceptance.UI.Web
 
         private void Forward(Page successPage, Page errorPage)
         {
-            if (Context.Browser.IsOnPage(errorPage))
+            if (Context.Browser.IsOnPage(successPage))
             {
-                Context.Driver = errorPage;
+                Context.Driver = successPage;
             }
             else
             {
-                Context.Driver = successPage;
+                Context.Driver = errorPage;
             }
         }
 
