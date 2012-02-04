@@ -128,7 +128,7 @@ namespace ProSpec.Acceptance
         /// <param name="func">Function executed to store the object in the context</param>
         public void Set<T>(Func<T> func)
         {
-            Set<T>(func(), ObjectLifeSpan.Scenario);
+            Set<T>(func, ObjectLifeSpan.Scenario);
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace ProSpec.Acceptance
         /// <param name="lifeSpan">Life span of the object</param>
         public void Set<T>(Func<T> func, ObjectLifeSpan lifeSpan)
         {
-            GetContext(lifeSpan).Set<T>(func());
+            GetContext(lifeSpan).Set<T>(func);
         }
 
         /// <summary>

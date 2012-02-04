@@ -42,7 +42,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// Loads page but does not navigate to it.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <returns>Page</returns>
         public T Load<T>() where T : Page
         {
             return Load<T>(false);
@@ -144,7 +144,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         /// <typeparam name="TPage">Page to forward to if the action completes successfully</typeparam>
         /// <param name="source">Source page when the action was executed. Default to forward if action completes with an error.</typeparam>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Parameters of the request</param>
         public void Forward<TPage>(Page source, string parameters) where TPage : Page
         {
             Page successPage = CreatePage(typeof(TPage));
@@ -159,7 +159,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to forward to if the action completes successfully</typeparam>
         /// <typeparam name="TErrorPage">Page to forward to if the action completes with an error. By default, it forwards to the same page</typeparam>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Parameters of the request</param>
         public void Forward<TSuccessPage, TErrorPage>(string parameters) where TSuccessPage : Page where TErrorPage : Page
         {
             TSuccessPage successPage = (TSuccessPage)CreatePage(typeof(TSuccessPage));

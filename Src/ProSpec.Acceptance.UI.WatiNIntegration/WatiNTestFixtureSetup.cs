@@ -12,7 +12,7 @@ namespace ProSpec.Acceptance.UI.WatiNIntegration
         /// <summary>
         /// Initializes the test fixture.
         /// </summary>
-        /// <param name="browserSettings">Settingd of the browser</param>
+        /// <param name="browserSettings">Settings of the browser</param>
         /// <param name="browserLifeSpan">Life span of the browser</param>
         public WatiNTestFixtureSetup(ISettings browserSettings, ObjectLifeSpan browserLifeSpan) : base(browserLifeSpan)
         {
@@ -23,9 +23,6 @@ namespace ProSpec.Acceptance.UI.WatiNIntegration
         /// Initializes the test fixture.
         /// </summary>
         /// <param name="browserSettings">Settings of the browser</param>
-        public WatiNTestFixtureSetup(ISettings browserSettings)
-        {
-            Settings.Instance = browserSettings;
-        }
+        public WatiNTestFixtureSetup(ISettings browserSettings) : this(browserSettings, ObjectLifeSpan.Scenario) {}
     }
 }

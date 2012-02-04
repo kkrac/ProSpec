@@ -11,16 +11,11 @@ namespace ProSpec.Acceptance.UI.Web
         /// <summary>
         /// Initializes the test fixture.
         /// </summary>
-        /// <param name="browserScope">Type of scope of the browser</param>
+        /// <param name="browserScope">Life span of the browser</param>
         public WebTestFixtureSetup(ObjectLifeSpan browserScope)
         {
             Context.BrowserScope = browserScope;
         }
-
-        /// <summary>
-        /// Initializes the test fixture.
-        /// </summary>
-        public WebTestFixtureSetup() : this(ObjectLifeSpan.Scenario) { }
 
         private WebStepsContext Context
         {
@@ -51,9 +46,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// <returns></returns>
         protected void InitializeBrowser()
         {
-            IBrowser browser = IoCProvider.Resolve<IBrowser>();
-
-            Context.Browser = browser;
+            Context.Browser = IoCProvider.Resolve<IBrowser>();
         }
 
         /// <summary>
