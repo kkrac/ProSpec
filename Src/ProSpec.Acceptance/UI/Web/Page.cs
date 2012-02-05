@@ -13,7 +13,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// </summary>
         protected Page()
         {
-            Uri = new Uri(Context.Server.RootUrl + RelativeUrl).ToString();
+            Uri = Context.Server.RootUrl + RelativeUrl;
 
             RawUrl = Uri;
         }
