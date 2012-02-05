@@ -1,0 +1,459 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProSpec.Acceptance</name>
+    </assembly>
+    <members>
+        <member name="T:ProSpec.Acceptance.IFlowManager`1">
+            <summary>
+            Manages the flow of a scenario.
+            </summary>
+            <typeparam name="TestDriver"></typeparam>
+        </member>
+        <member name="T:ProSpec.Acceptance.ObjectLifeSpan">
+            <summary>
+            Life span of an object in the context.
+            </summary>
+        </member>
+        <member name="F:ProSpec.Acceptance.ObjectLifeSpan.Global">
+            <summary>
+            Reference to the life span of an object that lasts in the context throughout the execution of all the tests.
+            </summary>
+        </member>
+        <member name="F:ProSpec.Acceptance.ObjectLifeSpan.Feature">
+            <summary>
+            Reference to the life span of an object that lasts in the context throughout the execution of the current feature.
+            </summary>
+        </member>
+        <member name="F:ProSpec.Acceptance.ObjectLifeSpan.Scenario">
+            <summary>
+            Reference to the life span of an object that lasts in the context throughout the execution of the current scenario.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.IStepsContext`1">
+            <summary>
+            Interface to be implemented by step definitions classes.
+            </summary>
+            <typeparam name="TDriver"></typeparam>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Get``1">
+            <summary>
+            Gets an object from the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Get``1(ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Gets an object from the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <param name="lifeSpan">Life span of the object</param>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Get``1(System.String)">
+            <summary>
+            Gets an object from the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <param name="key">Key of the object stored in the context</param>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Get``1(System.String,ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Gets an object from the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <param name="key">Key of the object stored in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Set``1(``0)">
+            <summary>
+            Stores an object in the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="data">Reference to the object to store in the context</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Set``1(``0,ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Stores an object in the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="data">Reference to the object to store in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Set``1(System.String,``0)">
+            <summary>
+            Stores an object in the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="key">Key with which the object is stored in the context</param>
+            <param name="data">Reference to the object to store in the context</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Set``1(System.String,``0,ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Stores an object in the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="key">Key with which the object is stored in the context</param>
+            <param name="data">Reference to the object to store in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Set``1(System.Func{``0})">
+            <summary>
+            Stores an object in the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="func">Function executed to store the object in the context</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.IStepsContext`1.Set``1(System.Func{``0},ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Stores an object in the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="func">Function executed to store the object in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+        </member>
+        <member name="P:ProSpec.Acceptance.IStepsContext`1.Driver">
+            <summary>
+            Reference to the driver that is active.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.ITestDriver">
+            <summary>
+            Interface that all test drivers should implement.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.ITestDriver.OfType``1">
+            <summary>
+            Returns the driver of a specific type.
+            </summary>
+            <typeparam name="T">Type of the driver</typeparam>
+            <returns>Reference to the driver</returns>
+        </member>
+        <member name="P:ProSpec.Acceptance.ITestDriver.Uri">
+            <summary>
+            Identifier of the test driver.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.ITestFixtureSetup">
+            <summary>
+            Initializes and tears down the contexts.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.UI.Web.WebStepsContext">
+            <summary>
+            Steps context implementation for a web scenario.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.StepsContextBase`1">
+            <summary>
+            Step base implementation that encapsulates Specflow contexts providing easy access to common objects.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.GetContext(ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Gets Specflow context depending on the life span specified.
+            </summary>
+            <param name="lifeSpan">Life span of the context</param>
+            <returns>Context</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Get``1">
+            <summary>
+            Gets an object from the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Get``1(System.String)">
+            <summary>
+            Gets an object from the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <param name="key">Key of the object stored in the context</param>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Get``1(ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Gets an object from the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <param name="lifeSpan">Life span of the object</param>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Get``1(System.String,ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Gets an object from the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to retrieve</typeparam>
+            <param name="key">Key of the object stored in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+            <returns>Object of generic type T</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Set``1(``0)">
+            <summary>
+            Stores an object in the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="data">Reference to the object to store in the context</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Set``1(System.String,``0)">
+            <summary>
+            Stores an object in the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="key">Key with which the object is stored in the context</param>
+            <param name="data">Reference to the object to store in the context</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Set``1(System.Func{``0})">
+            <summary>
+            Stores an object in the scenario context.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="func">Function executed to store the object in the context</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Set``1(``0,ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Stores an object in the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="data">Reference to the object to store in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Set``1(System.String,``0,ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Stores an object in the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="key">Key with which the object is stored in the context</param>
+            <param name="data">Reference to the object to store in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.StepsContextBase`1.Set``1(System.Func{``0},ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Stores an object in the corresponding context depending on the object's life span.
+            </summary>
+            <typeparam name="T">Type of the object to store</typeparam>
+            <param name="func">Function executed to store the object in the context</param>
+            <param name="lifeSpan">Life span of the object</param>
+        </member>
+        <member name="P:ProSpec.Acceptance.StepsContextBase`1.Driver">
+            <summary>
+            Reference to the driver that is currently active.
+            </summary>
+        </member>
+        <member name="P:ProSpec.Acceptance.UI.Web.WebStepsContext.Current">
+            <summary>
+            Singleton instance of the context.
+            </summary>
+        </member>
+        <member name="P:ProSpec.Acceptance.UI.Web.WebStepsContext.FlowManager">
+            <summary>
+            Reference to the flow manager.
+            </summary>
+        </member>
+        <member name="P:ProSpec.Acceptance.UI.Web.WebStepsContext.Driver">
+            <summary>
+            Reference to the page that is currently active.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.UI.Web.Page">
+            <summary>
+            Page object base implementation.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.OfType``1">
+            <summary>
+            Returns the page that is of a specific type.
+            </summary>
+            <typeparam name="T">Type of the page.</typeparam>
+            <returns>Reference to the page</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Validate">
+            <summary>
+            Used to validate the fields in a page.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.ParametersToString(System.String[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="RESTfulParameters"></param>
+            <param name="queryString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.ContainsText(System.String)">
+            <summary>
+            Determines if the page contains a certain text.
+            </summary>
+            <param name="text">Text to find on the page</param>
+            <returns>true if the page contains the text, otherwise false</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Go">
+            <summary>
+            Navigates to the page.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Go(System.String[])">
+            <summary>
+            Navigates to the page.
+            </summary>
+            <param name="RESTfulParameters">Array of parameters of a RESTful call</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Go(System.String[],System.String)">
+            <summary>
+            Navigates to the page.
+            </summary>
+            <param name="RESTfulParameters">Array of parameters of a RESTful call</param>
+            <param name="queryString">Query string of the call</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Submit``1(System.Action)">
+            <summary>
+            Submits an action.
+            </summary>
+            <typeparam name="TPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
+            <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Submit``1(System.Action,System.String[],System.String)">
+            <summary>
+            Submits an action.
+            </summary>
+            <typeparam name="TPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
+            <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
+            <param name="RESTfulParameters">REST parameters to attach to the forwarded page URL. If no parameters to be sent, just leave this as null</param>
+            <param name="queryString">Querystring parameters to attach to the forwarded page URL. If no parameters to be sent, just leave this as null</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Submit``2(System.Action)">
+            <summary>
+            Submits an action.
+            </summary>
+            <typeparam name="TSuccessPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
+            <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error. By default, it forwards to the current page</typeparam>
+            <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.Page.Submit``2(System.Action,System.String[],System.String)">
+            <summary>
+            Submits an action.
+            </summary>
+            <typeparam name="TSuccessPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
+            <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error. By default, it forwards to the current page</typeparam>
+            <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
+            <param name="RESTfulParameters">REST parameters to attach to the forwarded page URL</param>
+            <param name="queryString">Querystring parameters to attach to the forwarded page URL</param>
+        </member>
+        <member name="P:ProSpec.Acceptance.UI.Web.Page.RelativeUrl">
+            <summary>
+            Relative Url of the page.
+            </summary>
+        </member>
+        <member name="P:ProSpec.Acceptance.UI.Web.Page.RawUrl">
+            <summary>
+            Complete Url including the parameters.
+            </summary>
+        </member>
+        <member name="P:ProSpec.Acceptance.UI.Web.Page.Uri">
+            <summary>
+            Url of the page without the parameters.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup">
+            <summary>
+            Fixture to initialize and tear down components used in a set of tests of a web application.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.#ctor(ProSpec.Acceptance.ObjectLifeSpan)">
+            <summary>
+            Initializes the test fixture.
+            </summary>
+            <param name="browserScope">Life span of the browser</param>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.InitializeBrowser">
+            <summary>
+            Initializes the browser.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.DisposeBrowser">
+            <summary>
+            Disposes the browser.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.SetupTests">
+            <summary>
+            Initializes components used throughout the execution of the tests.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.TearDownTests">
+            <summary>
+            Finalizes the components used throughout the execution of the tests. 
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.SetupFeature">
+            <summary>
+            Initializes components used throughout the execution of a feature.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.TearDownFeature">
+            <summary>
+            Finalizes the components used throughout the execution of a feature.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.SetupScenario">
+            <summary>
+            Initializes components used throughout the execution of a scenario.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.WebTestFixtureSetup.TearDownScenario">
+            <summary>
+            Finalizes the components used throughout the execution of a scenario.
+            </summary>
+        </member>
+        <member name="T:ProSpec.Acceptance.UI.Web.PageFlowManager">
+            <summary>
+            Implementation of the flow manager for a web application.
+            </summary>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.PageFlowManager.Load``1">
+            <summary>
+            Loads page but does not navigate to it.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Page</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.PageFlowManager.LoadAndGo``1">
+            <summary>
+            Loads page and navigates to it.
+            </summary>
+            <typeparam name="T">Type of page to return</typeparam>
+            <returns>Page</returns>
+        </member>
+        <member name="M:ProSpec.Acceptance.UI.Web.PageFlowManager.LoadAndGo``1(System.Net.HttpStatusCode)">
+            <summary>
+            Loads page and navigates to it.
+            </summary>
+            <typeparam name="T">Type of page to return</typeparam>
+            <param name="expectedStatusCode">Expected HttpStatusCode once the request completes. By default, the expected status is HttpStatusCode.OK</param>
+            <returns>Page</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ProSpec.Acceptance.UI.Web.PageFlowManager.Forward``1(ProSpec.Acceptance.UI.Web.Page,System.String)" -->
+        <member name="M:ProSpec.Acceptance.UI.Web.PageFlowManager.Forward``2(System.String)">
+            <summary>
+            Forwards the request.
+            </summary>
+            <typeparam name="TSuccessPage">Page to forward to if the action completes successfully</typeparam>
+            <typeparam name="TErrorPage">Page to forward to if the action completes with an error. By default, it forwards to the same page</typeparam>
+            <param name="parameters">Parameters of the request</param>
+        </member>
+        <member name="P:ProSpec.Acceptance.UI.Web.PageFlowManager.Current">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
