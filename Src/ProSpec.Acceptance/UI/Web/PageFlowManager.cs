@@ -158,19 +158,19 @@ namespace ProSpec.Acceptance.UI.Web
         /// Forwards the request.
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to forward to if the action completes successfully</typeparam>
-        /// <typeparam name="TErrorPage">Page to forward to if the action completes with an error. By default, it forwards to the same page</typeparam>
+        /// <typeparam name="TFailPage">Page to forward to if the action fails. By default, it forwards to the same page</typeparam>
         /// <param name="parameters">Parameters of the request</param>
-        public void Forward<TSuccessPage, TErrorPage>(string parameters) where TSuccessPage : Page where TErrorPage : Page
+        public void Forward<TSuccessPage, TFailPage>(string parameters) where TSuccessPage : Page where TFailPage : Page
         {
             TSuccessPage successPage = (TSuccessPage)CreatePage(typeof(TSuccessPage));
-            TErrorPage errorPage = (TErrorPage)CreatePage(typeof(TErrorPage));
+            TFailPage failPage = (TFailPage)CreatePage(typeof(TFailPage));
 
             successPage.RawUrl += parameters;
 
-            Forward(successPage, errorPage);
+            Forward(successPage, failPage);
         }
 
-        private void Forward(Page successPage, Page errorPage)
+        private void Forward(Page successPage, Page failPage)
         {
             if (Context.Browser.IsOnPage(successPage))
             {
@@ -178,18 +178,18 @@ namespace ProSpec.Acceptance.UI.Web
             }
             else
             {
-                Context.Driver = errorPage;
+                Context.Driver = failPage;
             }
         }
 
-        internal void Forward(Type successPageType, Type errorPageType, string parameters)
+        internal void Forward(Type successPageType, Type failPageType, string parameters)
         {
             Page successPage = CreatePage(successPageType);
-            Page errorPage = CreatePage(errorPageType);
+            Page failPage = CreatePage(failPageType);
 
             successPage.RawUrl += parameters;
 
-            Forward(successPage, errorPage);
+            Forward(successPage, failPage);
         }
     }
 }

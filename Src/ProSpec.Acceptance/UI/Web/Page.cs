@@ -9,13 +9,11 @@ namespace ProSpec.Acceptance.UI.Web
     public abstract class Page : ITestDriver
     {
         /// <summary>
-        /// Constructor.
+        /// 
         /// </summary>
         protected Page()
         {
-            IServer server = WebStepsContext.Current.Server;
-
-            Uri = new Uri(server.RootUrl + RelativeUrl).ToString();
+            Uri = new Uri(Context.Server.RootUrl + RelativeUrl).ToString();
 
             RawUrl = Uri;
         }
@@ -83,7 +81,12 @@ namespace ProSpec.Acceptance.UI.Web
                 parametersAsString += queryString;
             }
 
-            return string.Concat("/", parametersAsString);
+            if (!string.IsNullOrEmpty(parametersAsString))
+            {
+                parametersAsString = string.Concat("/", parametersAsString);
+            }
+
+            return parametersAsString;
         }
 
         private PageFlowManager FlowManager
