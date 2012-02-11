@@ -17,14 +17,20 @@ namespace Sample.UI.Web
 
             routes.MapRoute(
                 "ConfirmAccount", // Route name
-                "{controller}/{action}/{userId}/{token}", // URL with parameters
-                new { controller = "UserAccount", action = "LogIn", userId = "", token = "" } // Parameter defaults
+                "UserAccount/Confirm/{userId}/{token}",
+                new { controller = "UserAccount", action = "Confirm" }
+            );
+
+            routes.MapRoute(
+                "Login", // Route name
+                "UserAccount/Login",
+                new { controller = "UserAccount", action = "Login" }
             );
 
             routes.MapRoute(
                 "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "UserAccount", action = "LogIn", id = "" } // Parameter defaults
+                "{controller}/{action}",
+                new { controller = "UserAccount", action = "Login" }
             );
         }
 

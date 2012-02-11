@@ -17,12 +17,6 @@ namespace ProSpec.Acceptance.UI.WatiNIntegration
             observer = new NavigationObserver(this);
         }
 
-        public static ISettings Settings
-        {
-            get { return WatiN.Core.Settings.Instance; }
-            set { WatiN.Core.Settings.Instance = value; }
-        }
-
         /// <summary>
         /// 
         /// </summary>
