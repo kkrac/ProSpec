@@ -1,6 +1,5 @@
 ﻿using ProSpec.Hosting;
 using TechTalk.SpecFlow;
-using TwoK.Core.DesignByContract;
 
 namespace ProSpec.Acceptance.UI.Web
 {
@@ -16,18 +15,18 @@ namespace ProSpec.Acceptance.UI.Web
         {
             get
             {
-                SpecFlowContext context = GetContext(ObjectLifeSpan.Global);
+                SpecFlowContext globalContext = GetContext(ObjectLifeSpan.Global);
 
-                WebStepsContext webContext;
+                WebStepsContext stepsContext;
 
-                if (!context.TryGetValue<WebStepsContext>(out webContext))
+                if (!globalContext.TryGetValue<WebStepsContext>(out stepsContext))
                 {
-                    webContext = new WebStepsContext();
+                    stepsContext = new WebStepsContext();
 
-                    context.Set<WebStepsContext>(webContext);
+                    globalContext.Set<WebStepsContext>(stepsContext);
                 }
 
-                return webContext;
+                return stepsContext;
             }
         }
 

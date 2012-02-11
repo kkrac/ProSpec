@@ -24,7 +24,7 @@ namespace ProSpec.Acceptance
         }
 
         /// <summary>
-        /// Gets Specflow context depending on the life span specified.
+        /// Gets Specflow context for the life span specified.
         /// </summary>
         /// <param name="lifeSpan">Life span of the context</param>
         /// <returns>Context</returns>

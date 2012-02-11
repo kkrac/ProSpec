@@ -3,7 +3,6 @@ using ProSpec.Acceptance.UI.Web;
 using SHDocVw;
 using WatiN.Core;
 using Page = ProSpec.Acceptance.UI.Web.Page;
-using WatiN.Core.Interfaces;
 
 namespace ProSpec.Acceptance.UI.WatiNIntegration
 {

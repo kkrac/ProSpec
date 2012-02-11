@@ -1,5 +1,4 @@
 ﻿using System;
-using ProSpec.Hosting;
 
 namespace ProSpec.Acceptance.UI.Web
 {
