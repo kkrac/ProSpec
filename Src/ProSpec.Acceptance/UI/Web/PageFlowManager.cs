@@ -143,7 +143,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// Forwards the request.
         /// </summary>
         /// <typeparam name="TPage">Page to forward to if the action completes successfully</typeparam>
-        /// <param name="source">Source page when the action was executed. Default to forward if action completes with an error.</typeparam>
+        /// <param name="source">Source page when the action was executed. Default to forward if action completes with an error.</param>
         /// <param name="parameters">Parameters of the request</param>
         public void Forward<TPage>(Page source, string parameters) where TPage : Page
         {
