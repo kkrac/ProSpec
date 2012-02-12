@@ -127,9 +127,9 @@ namespace ProSpec.Acceptance.UI.Web
         /// <param name="queryString">Query string of the call</param>
         protected internal void Go(string[] RESTfulParameters, string queryString)
         {
-            string parametersAsString = ParametersToString(RESTfulParameters, queryString);
+            string parameters = ParametersToString(RESTfulParameters, queryString);
 
-            FlowManager.Load(this, true, false, parametersAsString);
+            FlowManager.Load(this, true, false, parameters);
 
             Validate();
         }
@@ -155,9 +155,9 @@ namespace ProSpec.Acceptance.UI.Web
         {
             action();
 
-            string parametersToString = ParametersToString(RESTfulParameters, queryString);
+            string parameters = ParametersToString(RESTfulParameters, queryString);
 
-            FlowManager.Forward<TPage>(this, parametersToString);
+            FlowManager.Forward<TPage>(this, parameters);
         }
 
         /// <summary>
@@ -185,9 +185,9 @@ namespace ProSpec.Acceptance.UI.Web
         {
             action();
 
-            string parametersToString = ParametersToString(RESTfulParameters, queryString);
+            string parameters = ParametersToString(RESTfulParameters, queryString);
 
-            FlowManager.Forward<TSuccessPage, TErrorPage>(parametersToString);
+            FlowManager.Forward<TSuccessPage, TErrorPage>(parameters);
         }
     }
 }

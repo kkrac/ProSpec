@@ -37,7 +37,7 @@ namespace ProSpec.Acceptance.UI.Web
         {
             get { return WebStepsContext.Current; }
         }
-        
+
         /// <summary>
         /// Loads page but does not navigate to it.
         /// </summary>
@@ -147,11 +147,7 @@ namespace ProSpec.Acceptance.UI.Web
         /// <param name="parameters">Parameters of the request</param>
         public void Forward<TPage>(Page source, string parameters) where TPage : Page
         {
-            Page successPage = CreatePage(typeof(TPage));
-
-            successPage.RawUrl += parameters;
-
-            Forward(successPage, source);
+            Forward(typeof(TPage), source, parameters);
         }
 
         /// <summary>
@@ -162,16 +158,22 @@ namespace ProSpec.Acceptance.UI.Web
         /// <param name="parameters">Parameters of the request</param>
         public void Forward<TSuccessPage, TFailPage>(string parameters) where TSuccessPage : Page where TFailPage : Page
         {
-            TSuccessPage successPage = (TSuccessPage)CreatePage(typeof(TSuccessPage));
-            TFailPage failPage = (TFailPage)CreatePage(typeof(TFailPage));
+            Forward(typeof(TSuccessPage), typeof(TFailPage), parameters);
+        }
+
+        internal void Forward(Type successPageType, Type failPageType, string parameters)
+        {
+            Page failPage = (Page)CreatePage(failPageType);
+
+            Forward(successPageType, failPage, parameters);
+        }
+
+        private void Forward(Type successPageType, Page failPage, string parameters)
+        {
+            Page successPage = (Page)CreatePage(successPageType);
 
             successPage.RawUrl += parameters;
 
-            Forward(successPage, failPage);
-        }
-
-        private void Forward(Page successPage, Page failPage)
-        {
             if (Context.Browser.IsOnPage(successPage))
             {
                 Context.Driver = successPage;
@@ -180,16 +182,6 @@ namespace ProSpec.Acceptance.UI.Web
             {
                 Context.Driver = failPage;
             }
-        }
-
-        internal void Forward(Type successPageType, Type failPageType, string parameters)
-        {
-            Page successPage = CreatePage(successPageType);
-            Page failPage = CreatePage(failPageType);
-
-            successPage.RawUrl += parameters;
-
-            Forward(successPage, failPage);
         }
     }
 }
