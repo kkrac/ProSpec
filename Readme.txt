@@ -13,16 +13,16 @@ Otherwise, you can see the Sample projects in the same ProSpec solution.
 * Pre-requisites to run tests in Sample App:
 
 1.- Install SQL Server Express edition
-2.- Specify where ASP.NET built-in Dev server is installed. To do so, go to {...}\Src\Sample\Src\Sample.Configuration\Acceptance\ui.config
+2.- Restore database
+   * Go to {...}\Src\Sample\Setup\Database
+   * Run RestoreDb.bat
+3.- Specify where ASP.NET built-in Dev server is installed
+   * Go to {...}\Src\Sample\Src\Sample.Configuration\Acceptance\ui.config
+   * Modify the following node accordingly:
+        <serverPath>C:\Program Files (x86)\Common Files\microsoft shared\DevServer\10.0\WebDev.WebServer20.EXE</serverPath>
 
-and modify the following node accordingly:
 
-<serverPath>C:\Program Files (x86)\Common Files\microsoft shared\DevServer\10.0\WebDev.WebServer20.EXE</serverPath>
-
-3.- Go to {...}\Src\Sample\Setup\Database and execute RestoreDb.bat. That will restore the database that comes with the example
-
-
-* Ok, I did this. Now, how do I run the tests?
+* Ok, you're done. Now, how do I run the tests?
 
 Go to the folder {...}\Src\Sample\Build and look for the file Run.Browser.Tests.bat.
 
