@@ -20,10 +20,13 @@ Otherwise, you can see the Sample projects in the same ProSpec solution.
    * Go to {...}\Src\Sample\Src\Sample.Configuration\Acceptance\ui.config
    * Modify the following node accordingly:
         <serverPath>C:\Program Files (x86)\Common Files\microsoft shared\DevServer\10.0\WebDev.WebServer20.EXE</serverPath>
+4.- Build the app
+   * Go to {...}\Src\Sample\Build
+   * Run build.bat
 
 
 * Ok, you're done. Now, how do I run the tests?
 
-Go to the folder {...}\Src\Sample\Build and look for the file Run.Browser.Tests.bat.
-
-Run it. And check for the report generate under {...}\Src\Sample\Reports\Acceptance\UI\Browser.
+1.- Go to the folder {...}\Src\Sample\Build
+2.- Execute file Run.Browser.Tests.bat.
+3.- Check for the report generated under {...}\Src\Sample\Reports\Acceptance\UI\Browser.
