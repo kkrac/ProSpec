@@ -1,0 +1,1 @@
+start "SampleApp build" /MIN cmd /c "nant.bat build_solution -buildfile:Sample.build -D:Configuration=Browser_Tests"
