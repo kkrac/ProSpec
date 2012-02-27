@@ -122,6 +122,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="app.path" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +145,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data.Access\converters.config" />
     <EmbeddedResource Include="Data.Access\daos.config" />
-    <EmbeddedResource Include="Data.Access\data.access.properties" />
     <EmbeddedResource Include="ui.config" />
     <EmbeddedResource Include="app.services.config">
       <SubType>Designer</SubType>
@@ -152,11 +152,6 @@
     <EmbeddedResource Include="Acceptance\queries.config">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Data.Access\Queries\user.queries">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Data.Access\sql.connection" />
-    <None Include="Data.Access\sql.connection.key" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

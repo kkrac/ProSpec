@@ -7,28 +7,23 @@ Even though it is centered on web applications with WatiN, it could be extended 
 * What does the package contain?
 
 ProSpec comes with the framework itself, and a small Sample application.
-You can find the the ProSpec.sln under \ProSpec and the Sample.sln under \ProSpec\Src\Sample if you want to open the application in isolation.
-Otherwise, you can check the the Sample projects in the same ProSpec solution.
+You can find the the ProSpec.sln under \ProSpec and the Sample.sln under {...}\Src\Sample if you want to open the application in isolation.
+Otherwise, you can see the Sample projects in the same ProSpec solution.
 
+* Pre-requisites to run tests in Sample App:
 
-* What to bear in mind before starting to play with the Sample app?
+1.- Install SQL Server Express edition
+2.- Specify where ASP.NET built-in Dev server is installed. To do so, go to {...}\Src\Sample\Src\Sample.Configuration\Acceptance\ui.config
 
-The Sample app uses the ASP.NET built-in Dev server to run your tests.
-Before you run the tests, you need to specify the correct path where the Dev server is installed in your machine and where you have the Sample app.
-You can do so by modiyfing the following file:
+and modify the following node accordingly:
 
-\ProSpec\Src\Sample\Src\Sample.Configuration\Acceptance\ui.config
+<serverPath>C:\Program Files (x86)\Common Files\microsoft shared\DevServer\10.0\WebDev.WebServer20.EXE</serverPath>
 
-There, look for the tag <serverPath> and update it accordingly.
-And modify the <physicalPath> to specify where the Sample App resides in your machine too.
+3.- Go to {...}\Src\Sample\Setup\Database and execute RestoreDb.bat. That will restore the database that comes with the example
 
 
 * Ok, I did this. Now, how do I run the tests?
 
-Go to the folder \ProSpec\Src\Sample\Build and look for the file Run.Browser.Tests.bat.
+Go to the folder {...}\Src\Sample\Build and look for the file Run.Browser.Tests.bat.
 
-Run it. And check for the report generate under \ProSpec\Src\Sample\Reports\Acceptance\UI\Browser.
-
-
-* Is that it?
-That's it. Now start using ProSpec to write your own tests. Simple. Easy. Fast.
+Run it. And check for the report generate under {...}\Src\Sample\Reports\Acceptance\UI\Browser.

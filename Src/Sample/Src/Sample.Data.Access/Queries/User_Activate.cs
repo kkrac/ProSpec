@@ -6,22 +6,22 @@ namespace Sample.Data.Access.Queries {
    
    
    /// <summary>
-   /// Wraps the User_Temp_Delete Stored Procedure
+   /// Wraps the User_Activate Stored Procedure
    /// </summary>
-   public interface IUser_Temp_Delete {
+   public interface IUser_Activate {
       
       Int32 Execute(string userId);
    }
 
-   public class User_Temp_Delete : QueryBase, IUser_Temp_Delete {
+   public class User_Activate : QueryBase, IUser_Activate {
 
-       public User_Temp_Delete(IDbCommandExecuter executer, IDbParameterFactory parameterFactory) : 
+       public User_Activate(IDbCommandExecuter executer, IDbParameterFactory parameterFactory) : 
             base(executer, parameterFactory) {
       }
       
       public override String Text {
          get {
-            return "User_Temp_Delete";
+             return "User_Activate";
          }
       }
       

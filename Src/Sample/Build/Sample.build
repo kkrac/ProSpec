@@ -3,6 +3,8 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		xmlns="http://nant.sf.net/release/0.85/nant.xsd" 
 		default="build_solution">
+		
+  <include buildfile="common.properties"/>
 
 	<target name="build_solution" description="Builds solution">
 		<msbuild project="${root.dir}\Sample.sln">
@@ -10,5 +12,8 @@
 		  <property name="nologo" value="true"/>
 		  <property name="OutputPath" value="${bin.dir}"/>
 		</msbuild>
+		<xmlpoke file="${root.dir}\Src\Sample.Configuration\app.path"
+			xpath="/configuration/properties/Root_Path"
+			value="${string::replace(root.dir, '\Src\Sample\Build\..','')}" />
 	</target>
 </project>

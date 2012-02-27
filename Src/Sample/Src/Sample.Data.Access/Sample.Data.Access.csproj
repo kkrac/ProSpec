@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionStringProvider.cs" />
     <Compile Include="Converters\RowToAuthenticatedUserConverter.cs" />
     <Compile Include="DbBenchmarkWriter.cs" />
     <Compile Include="IUserAccountDAO.cs" />
