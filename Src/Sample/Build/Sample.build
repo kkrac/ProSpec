@@ -5,8 +5,15 @@
 		default="build_solution">
 		
   <include buildfile="common.properties"/>
+  <property name="webproj.dir" value="${root.dir}\src\Sample.UI.Web" />
+  
+  	<target name="build_web" description="Builds web project">
+		<msbuild project="${webproj.dir}\Sample.UI.Web.csproj">
+		  <property name="OutputPath" value="${webproj.dir}\bin"/>
+		</msbuild>
+	</target>
 
-	<target name="build_solution" description="Builds solution">
+	<target name="build_solution" depends="build_web" description="Builds solution">
 		<msbuild project="${root.dir}\Sample.sln">
 		  <property name="Configuration" value="${Configuration}"/>
 		  <property name="nologo" value="true"/>
