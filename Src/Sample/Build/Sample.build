@@ -19,7 +19,7 @@
 		  <property name="nologo" value="true"/>
 		  <property name="OutputPath" value="${bin.dir}"/>
 		</msbuild>
-		<xmlpoke file="${root.dir}\Src\Sample.Configuration\app.path"
+		<xmlpoke file="${src.dir}\Sample.Configuration\app.path"
 			xpath="/configuration/properties/Root_Path"
 			value="${string::replace(root.dir, '\Src\Sample\Build\..','')}" />
 	</target>
