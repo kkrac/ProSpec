@@ -17,9 +17,9 @@
   <target name="run_browser_tests" depends="prepare_for_build, build_solution" description="Runs browser tests">
     <exec program="${tools.dir}\NUnit\bin\net-2.0\nunit-console.exe"
         failonerror="false"
-        commandline="${bin.dir}\Sample.Acceptance.dll /xml:${results.dir} /nologo"/>
+        commandline="&quot;${bin.dir}\Sample.Acceptance.dll&quot; /xml:&quot;${results.dir}&quot; /nologo"/>
     <exec program="${tools.dir}\SpecFlow\specflow.exe"
-        commandline="nunitexecutionreport ${acceptance.dir}\Sample.Acceptance.csproj /xmlTestResult:${results.dir} /out:${reports.dir}"/>
+        commandline="nunitexecutionreport &quot;${acceptance.dir}\Sample.Acceptance.csproj&quot; /xmlTestResult:&quot;${results.dir}&quot; /out:&quot;${reports.dir}&quot;"/>
   </target>
 
 </project>
