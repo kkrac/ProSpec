@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TechTalk.SpecFlow;
 
 namespace ProSpec.Acceptance
@@ -8,21 +8,6 @@ namespace ProSpec.Acceptance
     /// </summary>
     public abstract class StepsContextBase<TDriver> : IStepsContext<TDriver> where TDriver : ITestDriver
     {
-        private static ScenarioContext ScenarioContext
-        {
-            get { return ScenarioContext.Current; }
-        }
-
-        private static FeatureContext FeatureContext
-        {
-            get { return FeatureContext.Current; }
-        }
-
-        private static GlobalContext GlobalContext
-        {
-            get { return GlobalContext.Current; }
-        }
-
         /// <summary>
         /// Gets Specflow context for the life span specified.
         /// </summary>
@@ -33,12 +18,12 @@ namespace ProSpec.Acceptance
             switch (lifeSpan)
             {
                 case ObjectLifeSpan.Global:
-                    return GlobalContext;
+                    return GlobalContext.Current;
                 case ObjectLifeSpan.Feature:
-                    return FeatureContext;
+                    return FeatureContext.Current;
                 case ObjectLifeSpan.Scenario:
                 default:
-                    return ScenarioContext;
+                    return ScenarioContext.Current;
             }
         }
 
