@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using Should;
 using Should.Sdk;
@@ -163,14 +163,14 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal void Forward(Type successPageType, Type failPageType, string parameters)
         {
-            Page failPage = (Page)CreatePage(failPageType);
+            Page failPage = CreatePage(failPageType);
 
             Forward(successPageType, failPage, parameters);
         }
 
         private void Forward(Type successPageType, Page failPage, string parameters)
         {
-            Page successPage = (Page)CreatePage(successPageType);
+            Page successPage = CreatePage(successPageType);
 
             successPage.RawUrl += parameters;
 
