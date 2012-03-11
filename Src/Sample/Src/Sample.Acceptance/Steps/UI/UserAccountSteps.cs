@@ -1,6 +1,5 @@
 ﻿#if Browser_Tests
 
-using Sample.Acceptance.Support;
 using Sample.Acceptance.Support.Pages;
 using Sample.UI.Web.Models.UserAccount;
 using Should;
@@ -12,6 +11,14 @@ namespace Sample.Acceptance.Steps.UI
     [Binding]
     public class UserAccountSteps : UserAccountStepsContext
     {
+        [AfterScenario]
+        protected override void AfterScenario()
+        {
+            DeleteTemporaryUsers();
+            DeleteUsers();
+            DeletePeople();
+        }
+
         [Given(@"I am on the log in page")]
         public void Given_I_Am_On_The_Login_Page()
         {
@@ -29,7 +36,7 @@ namespace Sample.Acceptance.Steps.UI
         {
             string userId = table.Rows[0]["UserName"];
 
-            CurrentUser = UserAccountStepsUtils.GetUser(userId);
+            CurrentUser = GetUser(userId);
 
             UserAccountConfirmationPage page = FlowManager.Load<UserAccountConfirmationPage>();
 
@@ -81,9 +88,7 @@ namespace Sample.Acceptance.Steps.UI
         [Then(@"the account should become active")]
         public void Then_The_Account_Should_Become_Active()
         {
-            bool isActive = UserAccountStepsUtils.IsUserActive(CurrentUser.Id);
-
-            isActive.ShouldBeTrue();
+            IsUserActive(CurrentUser.Id).ShouldBeTrue();
         }
 
         [Then(@"^(?:I should be redirected to|I should continue on) the temporary account page")]
