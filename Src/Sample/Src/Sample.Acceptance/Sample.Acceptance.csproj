@@ -154,7 +154,6 @@
     <Compile Include="Support\Queries\Users_DeleteAll.cs" />
     <Compile Include="Support\Queries\Users_Temp_DeleteAll.cs" />
     <Compile Include="Support\Queries\User_IsActive.cs" />
-    <Compile Include="Support\UserAccountStepsUtils.cs" />
     <Compile Include="Support\Pages\HomePage.cs" />
     <Compile Include="Support\Pages\LoginPage.cs" />
     <Compile Include="Support\Pages\UserAccountConfirmationPage.cs" />
