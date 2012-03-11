@@ -8,6 +8,9 @@ namespace ProSpec.Acceptance
     /// </summary>
     public abstract class StepsContextBase<TDriver> : IStepsContext<TDriver> where TDriver : ITestDriver
     {
+        protected virtual void BeforeScenario() { }
+        protected virtual void AfterScenario() { }
+
         /// <summary>
         /// Gets Specflow context for the life span specified.
         /// </summary>
