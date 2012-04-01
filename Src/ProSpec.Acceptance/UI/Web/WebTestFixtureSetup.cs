@@ -1,5 +1,5 @@
 ﻿using ProSpec.Hosting;
-using TwoK.Core.IoC;
+using ProSpec.Acceptance.IoC;
 
 namespace ProSpec.Acceptance.UI.Web
 {

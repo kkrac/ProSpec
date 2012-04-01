@@ -2,7 +2,6 @@ using System;
 using System.Net;
 using Should;
 using Should.Sdk;
-using TwoK.Core.DesignByContract;
 
 namespace ProSpec.Acceptance.UI.Web
 {
@@ -87,7 +86,10 @@ namespace ProSpec.Acceptance.UI.Web
 
         internal Page Load(Page page, bool navigateToPage, bool startingFlow, string additionalParameters)
         {
-            Check.Require(!startingFlow || !isFlowStarted, "Flow has already been started!");
+            if(!startingFlow && isFlowStarted)
+            {
+                throw new ApplicationException("Flow has already been started!");
+            }
 
             page.RawUrl += additionalParameters;
 

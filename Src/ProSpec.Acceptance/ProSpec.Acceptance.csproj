@@ -74,6 +74,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SharedLibs\Castle\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.MicroKernel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SharedLibs\Castle\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SharedLibs\Castle\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="Should, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SharedLibs\Should\Should.dll</HintPath>
@@ -82,6 +90,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -94,12 +103,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SharedLibs\SpecFlow\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="TwoK.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedLibs\TwoK\TwoK.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IoC\HttpSessionFactory.cs" />
+    <Compile Include="IoC\ILocalData.cs" />
+    <Compile Include="IoC\IoCProvider.cs" />
+    <Compile Include="IoC\Local.cs" />
+    <Compile Include="IoC\ProSpecContainer.cs" />
     <Compile Include="ITestDriver.cs" />
     <Compile Include="ITestFixtureSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
