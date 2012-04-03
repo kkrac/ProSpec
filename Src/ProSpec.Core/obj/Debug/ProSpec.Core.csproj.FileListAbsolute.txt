@@ -1,5 +1,5 @@
+C:\Users\kevin\ProSpec\Src\ProSpec.Core\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\kevin\ProSpec\Bin\ProSpec.Core.dll
 C:\Users\kevin\ProSpec\Bin\ProSpec.Core.pdb
-C:\Users\kevin\ProSpec\Src\ProSpec.Core\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\kevin\ProSpec\Src\ProSpec.Core\obj\Debug\ProSpec.Core.dll
 C:\Users\kevin\ProSpec\Src\ProSpec.Core\obj\Debug\ProSpec.Core.pdb

@@ -1,7 +1,7 @@
-﻿namespace ProSpec.Core.UI.Web
-{
-    using System.Net;
+﻿using System.Net;
 
+namespace ProSpec.Core.UI.Web
+{
     public interface IBrowser
     {
         void GoTo(string url);

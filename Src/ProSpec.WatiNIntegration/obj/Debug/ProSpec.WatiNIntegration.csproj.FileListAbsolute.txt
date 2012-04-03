@@ -1,0 +1,5 @@
+C:\Users\kevin\ProSpec\Bin\ProSpec.WatiNIntegration.dll
+C:\Users\kevin\ProSpec\Bin\ProSpec.WatiNIntegration.pdb
+C:\Users\kevin\ProSpec\Src\ProSpec.WatiNIntegration\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\kevin\ProSpec\Src\ProSpec.WatiNIntegration\obj\Debug\ProSpec.WatiNIntegration.dll
+C:\Users\kevin\ProSpec\Src\ProSpec.WatiNIntegration\obj\Debug\ProSpec.WatiNIntegration.pdb

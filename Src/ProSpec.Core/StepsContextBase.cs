@@ -1,8 +1,8 @@
+﻿using System;
+using TechTalk.SpecFlow;
+
 namespace ProSpec.Core
 {
-    using System;
-    using TechTalk.SpecFlow;
-
     /// <summary>
     /// Step base implementation that encapsulates Specflow contexts providing easy access to common objects.
     /// </summary>

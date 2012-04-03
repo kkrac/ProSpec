@@ -1,7 +1,7 @@
 ﻿namespace ProSpec.Core.UI.Web
 {
-    using ProSpec.Core.Hosting;
     using TwoK.IoC;
+    using ProSpec.Core.Hosting;
 
     /// <summary>
     /// Fixture to initialize and tear down components used in a set of tests of a web application.

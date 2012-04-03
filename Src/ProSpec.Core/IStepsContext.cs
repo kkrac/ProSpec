@@ -1,7 +1,7 @@
-﻿namespace ProSpec.Core
-{
-    using System;
+﻿using System;
 
+namespace ProSpec.Core
+{
     /// <summary>
     /// Interface to be implemented by step definitions classes.
     /// </summary>

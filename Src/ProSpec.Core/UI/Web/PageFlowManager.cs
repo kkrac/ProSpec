@@ -1,4 +1,4 @@
-namespace ProSpec.Core.UI.Web
+﻿namespace ProSpec.Core.UI.Web
 {
     using System;
     using System.Net;

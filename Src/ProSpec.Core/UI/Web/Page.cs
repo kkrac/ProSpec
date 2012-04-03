@@ -1,7 +1,7 @@
-﻿namespace ProSpec.Core.UI.Web
-{
-    using System;
+﻿using System;
 
+namespace ProSpec.Core.UI.Web
+{
     /// <summary>
     /// Page object base implementation.
     /// </summary>

@@ -1,7 +1,7 @@
-﻿namespace ProSpec.Core
-{
-    using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
+namespace ProSpec.Core
+{
     public class GlobalContext : SpecFlowContext
     {
         private static GlobalContext current;
