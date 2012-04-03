@@ -1,5 +1,5 @@
-﻿using ProSpec.Acceptance.UI.WatiNIntegration;
-using ProSpec.Acceptance.UI.Web;
+﻿using ProSpec.Core.UI.Web;
+using ProSpec.WatiNIntegration;
 using Sample.UI.Web.Models.UserAccount;
 
 namespace Sample.Acceptance.Support.Pages

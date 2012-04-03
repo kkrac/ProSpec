@@ -1,4 +1,4 @@
-﻿using ProSpec.Acceptance.UI.Web;
+﻿using ProSpec.Core.UI.Web;
 using Sample.Domain.Model.User;
 
 namespace Sample.Acceptance.Steps

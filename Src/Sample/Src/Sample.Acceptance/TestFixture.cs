@@ -1,8 +1,8 @@
 ﻿using System.Web.SessionState;
-using ProSpec.Acceptance;
-using TwoK.Core.IoC;
 using MvcContrib.TestHelper.Fakes;
+using ProSpec.Core;
 using TechTalk.SpecFlow;
+using TwoK.IoC;
 
 namespace Sample.Acceptance.Features
 {
@@ -18,7 +18,7 @@ namespace Sample.Acceptance.Features
 
             SessionStateItemCollection sessionItems = new SessionStateItemCollection();
 
-            HttpSessionFactory.RegisterHttpSession(() => new FakeHttpSessionState(sessionItems));
+            IoCProvider.RegisterHttpSession(() => new FakeHttpSessionState(sessionItems));
 
             fixture = IoCProvider.Resolve<ITestFixtureSetup>();
 

@@ -1,7 +1,7 @@
 ﻿//#if UI_Tests
 
-using ProSpec.Acceptance.UI.WatiNIntegration;
-using ProSpec.Acceptance.UI.Web;
+using ProSpec.WatiNIntegration;
+using ProSpec.Core.UI.Web;
 
 namespace Sample.Acceptance.Support.Pages
 {

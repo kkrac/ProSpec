@@ -4,8 +4,8 @@ using Sample.Data.Access;
 using Sample.Data.Access.Queries;
 using Sample.Domain.Model.User;
 using TechTalk.SpecFlow;
-using TwoK.Core.IoC;
 using TwoK.Core.Security.Encryption;
+using TwoK.IoC;
 
 namespace Sample.Acceptance.Steps
 {

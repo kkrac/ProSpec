@@ -1,5 +1,4 @@
-﻿using ProSpec.Acceptance.UI.Web;
-using Should;
+﻿using Should;
 using TechTalk.SpecFlow;
 
 namespace Sample.Acceptance.Steps.UI
