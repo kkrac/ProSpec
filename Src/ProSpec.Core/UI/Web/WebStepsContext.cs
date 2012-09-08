@@ -1,6 +1,10 @@
 ﻿namespace ProSpec.Core.UI.Web
 {
+    using System;
+    using System.Net;
     using ProSpec.Core.Hosting;
+    using Should;
+    using Should.Sdk;
     using TechTalk.SpecFlow;
 
     /// <summary>
@@ -33,7 +37,7 @@
         /// <summary>
         /// Reference to the flow manager.
         /// </summary>
-        protected PageFlowManager FlowManager
+        private PageFlowManager FlowManager
         {
             get { return PageFlowManager.Current; }
         }
@@ -79,6 +83,48 @@
         {
             get { return Page.Current; }
             internal set { Page.Current = value; }
+        }
+
+        /// <summary>
+        /// Verifies the http status.
+        /// </summary>
+        /// <param name="statusCode">Http status of the last navigation</param>
+        protected void AssertHttpStatusIs(int statusCode)
+        {
+            try
+            {
+                HttpStatusCode expectedStatusCode = (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), statusCode.ToString());
+
+                Current.Browser.Status.ShouldEqual(expectedStatusCode);
+            }
+            catch (EqualException ex)
+            {
+                string browserOutput = string.Empty;
+
+                if (!string.IsNullOrEmpty(Current.Browser.Text))
+                {
+                    browserOutput = Environment.NewLine + Environment.NewLine;
+                    browserOutput += Current.Browser.Text;
+                }
+
+                Exception exToThrow = new AssertException(ex.Message + browserOutput);
+
+                throw exToThrow;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        protected T GoTo<T>() where T : Page
+        {
+            return FlowManager.LoadAndGo<T>();
+        }
+
+        protected T Load<T>() where T : Page
+        {
+            return FlowManager.Load<T>();
         }
     }
 }

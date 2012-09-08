@@ -54,7 +54,9 @@
         /// <returns>Page</returns>
         public T LoadAndGo<T>() where T : Page
         {
-            return LoadAndGo<T>(HttpStatusCode.OK);
+            T page = Load<T>(true);
+
+            return page;
         }
 
         /// <summary>
@@ -63,6 +65,7 @@
         /// <typeparam name="T">Type of page to return</typeparam>
         /// <param name="expectedStatusCode">Expected HttpStatusCode once the request completes. By default, the expected status is HttpStatusCode.OK</param>
         /// <returns>Page</returns>
+        [Obsolete("Use WebStepsContext.AssertHttpStatusIs() instead to verify the Http status")]
         public T LoadAndGo<T>(HttpStatusCode expectedStatusCode) where T : Page
         {
             T page = Load<T>(true);
@@ -139,10 +142,10 @@
         }
 
         /// <summary>
-        /// Forwards the request.
+        /// If the action is successful it forwards the request to the same or to another page. If the action fails, by default it forwards to the same page.
         /// </summary>
         /// <typeparam name="TPage">Page to forward to if the action completes successfully</typeparam>
-        /// <param name="source">Source page when the action was executed. Default to forward if action completes with an error.</param>
+        /// <param name="source">Default page to forward to if action completes with an error.</param>
         /// <param name="parameters">Parameters of the request</param>
         public void Forward<TPage>(Page source, string parameters) where TPage : Page
         {
@@ -150,24 +153,26 @@
         }
 
         /// <summary>
-        /// Forwards the request.
+        /// It forwards the request to the same or to another page.
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to forward to if the action completes successfully</typeparam>
-        /// <typeparam name="TFailPage">Page to forward to if the action fails. By default, it forwards to the same page</typeparam>
+        /// <typeparam name="TErrorPage">Page to forward to if the action fails</typeparam>
         /// <param name="parameters">Parameters of the request</param>
-        public void Forward<TSuccessPage, TFailPage>(string parameters) where TSuccessPage : Page where TFailPage : Page
+        public void Forward<TSuccessPage, TErrorPage>(string parameters)
+            where TSuccessPage : Page
+            where TErrorPage : Page
         {
-            Forward(typeof(TSuccessPage), typeof(TFailPage), parameters);
+            Forward(typeof(TSuccessPage), typeof(TErrorPage), parameters);
         }
 
-        internal void Forward(Type successPageType, Type failPageType, string parameters)
+        private void Forward(Type successPageType, Type errorPageType, string parameters)
         {
-            Page failPage = CreatePage(failPageType);
+            Page errorPage = CreatePage(errorPageType);
 
-            Forward(successPageType, failPage, parameters);
+            Forward(successPageType, errorPage, parameters);
         }
 
-        private void Forward(Type successPageType, Page failPage, string parameters)
+        private void Forward(Type successPageType, Page errorPage, string parameters)
         {
             Page successPage = CreatePage(successPageType);
 
@@ -179,7 +184,7 @@
             }
             else
             {
-                Context.Driver = failPage;
+                Context.Driver = errorPage;
             }
         }
     }

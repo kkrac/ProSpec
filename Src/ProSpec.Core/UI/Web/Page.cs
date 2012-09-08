@@ -1,14 +1,14 @@
-﻿using System;
-
-namespace ProSpec.Core.UI.Web
+﻿namespace ProSpec.Core.UI.Web
 {
+    using System;
+
     /// <summary>
     /// Page object base implementation.
     /// </summary>
     public abstract class Page : ITestDriver
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected Page()
         {
@@ -61,7 +61,7 @@ namespace ProSpec.Core.UI.Web
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="RESTfulParameters"></param>
         /// <param name="queryString"></param>
@@ -108,7 +108,7 @@ namespace ProSpec.Core.UI.Web
         /// </summary>
         protected internal void Go()
         {
-            Go(new string[] {}, null);
+            Go(new string[] { }, null);
         }
 
         /// <summary>
@@ -166,7 +166,9 @@ namespace ProSpec.Core.UI.Web
         /// <typeparam name="TSuccessPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
         /// <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error. By default, it forwards to the current page</typeparam>
         /// <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
-        protected void Submit<TSuccessPage, TErrorPage>(Action action) where TSuccessPage : Page where TErrorPage : Page
+        protected void Submit<TSuccessPage, TErrorPage>(Action action)
+            where TSuccessPage : Page
+            where TErrorPage : Page
         {
             Submit<TSuccessPage, TErrorPage>(action, null, null);
         }

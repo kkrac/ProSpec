@@ -3,6 +3,8 @@ using MvcContrib.TestHelper.Fakes;
 using ProSpec.Core;
 using TechTalk.SpecFlow;
 using TwoK.IoC;
+using WatiN.Core;
+using WatiN.Core.Interfaces;
 
 namespace Sample.Acceptance.Features
 {
@@ -21,6 +23,8 @@ namespace Sample.Acceptance.Features
             IoCProvider.RegisterHttpSession(() => new FakeHttpSessionState(sessionItems));
 
             fixture = IoCProvider.Resolve<ITestFixtureSetup>();
+
+            Settings.Instance = IoCProvider.Resolve<ISettings>();
 
             fixture.SetupTests();
         }

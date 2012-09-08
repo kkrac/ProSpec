@@ -17,6 +17,13 @@
             Context.BrowserScope = browserScope;
         }
 
+        /// <summary>
+        /// Initializes the test fixture.
+        /// </summary>
+        public WebTestFixtureSetup() : this(ObjectLifeSpan.Scenario)
+        {
+        }
+
         private WebStepsContext Context
         {
             get { return WebStepsContext.Current; }

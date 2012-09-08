@@ -1,6 +1,4 @@
-﻿//#if UI_Tests
-
-using ProSpec.WatiNIntegration;
+﻿using ProSpec.WatiNIntegration;
 using ProSpec.Core.UI.Web;
 
 namespace Sample.Acceptance.Support.Pages
@@ -13,5 +11,3 @@ namespace Sample.Acceptance.Support.Pages
         }
     }
 }
-
-//#endif

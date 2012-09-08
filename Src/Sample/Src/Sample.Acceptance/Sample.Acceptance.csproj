@@ -67,6 +67,8 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -156,18 +158,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\PageNotFound.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PageNotFound.feature</DependentUpon>
+    </Compile>
     <Compile Include="Steps\UI\CommonSteps.cs" />
     <Compile Include="Steps\SampleStepsContext.cs" />
+    <Compile Include="Steps\UI\UnexistingPageSteps.cs" />
     <Compile Include="Steps\UI\UserAccountSteps.cs" />
     <Compile Include="Steps\UserAccountStepsContext.cs" />
+    <Compile Include="Support\Pages\HomePage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Support\Pages\UnexistingPage.cs" />
+    <Compile Include="Support\Pages\UserAccount\LoginPage.cs" />
+    <Compile Include="Support\Pages\UserAccount\SignUpPage.cs" />
+    <Compile Include="Support\Pages\UserAccount\ConfirmationPage.cs" />
     <Compile Include="Support\Queries\People_DeleteAll.cs" />
     <Compile Include="Support\Queries\Users_DeleteAll.cs" />
     <Compile Include="Support\Queries\Users_Temp_DeleteAll.cs" />
     <Compile Include="Support\Queries\User_IsActive.cs" />
-    <Compile Include="Support\Pages\HomePage.cs" />
-    <Compile Include="Support\Pages\LoginPage.cs" />
-    <Compile Include="Support\Pages\UserAccountConfirmationPage.cs" />
-    <Compile Include="Support\Pages\UserAccountSignUpPage.cs" />
     <Compile Include="TestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,6 +197,10 @@
     </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Features\PageNotFound.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PageNotFound.feature.cs</LastGenOutput>
     </None>
     <None Include="tests.properties">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

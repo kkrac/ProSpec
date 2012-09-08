@@ -11,5 +11,11 @@ namespace Sample.Acceptance.Steps.UI
         {
             Driver.ContainsText(message).ShouldBeTrue();
         }
+
+        [Then(@"the http status should be '(.*)'")]
+        public void Then_The_Http_Status_Should_Be(int status)
+        {
+            AssertHttpStatusIs(status);
+        }
     }
 }

@@ -1,18 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
-using TwoK.Core.IoC;
 using System.Web.SessionState;
+using TwoK.Core.IoC;
 
 namespace Sample.UI.Web.Controllers
 {
-    public class ControllerFactory : IControllerFactory
+    public class ControllerFactory : DefaultControllerFactory
     {
-        public IController CreateController(RequestContext requestContext, string controllerName)
-        {
-            return IoCProvider.Resolve<IController>(controllerName + "Controller");
-        }
-
-        public void ReleaseController(IController controller)
+        public override void ReleaseController(IController controller)
         {
             IoCProvider.Release(controller);
         }
@@ -20,6 +16,16 @@ namespace Sample.UI.Web.Controllers
         public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)
         {
             return SessionStateBehavior.Default;
+        }
+
+        protected override IController GetControllerInstance(RequestContext requestContext, System.Type controllerType)
+        {
+            if (controllerType == null)
+            {
+                throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
+            }
+
+            return IoCProvider.Resolve<IController>(controllerType.Name);
         }
     }
 }
