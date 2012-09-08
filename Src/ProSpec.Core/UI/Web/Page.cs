@@ -63,16 +63,16 @@
         /// <summary>
         ///
         /// </summary>
-        /// <param name="RESTfulParameters"></param>
+        /// <param name="RESTParameters"></param>
         /// <param name="queryString"></param>
         /// <returns></returns>
-        protected string ParametersToString(string[] RESTfulParameters, string queryString)
+        protected string ParametersToString(string[] RESTParameters, string queryString)
         {
             string parametersAsString = string.Empty;
 
-            if (RESTfulParameters != null && RESTfulParameters.Length > 0)
+            if (RESTParameters != null && RESTParameters.Length > 0)
             {
-                parametersAsString = string.Join("/", RESTfulParameters);
+                parametersAsString = string.Join("/", RESTParameters);
             }
 
             if (queryString != null)
@@ -114,20 +114,20 @@
         /// <summary>
         /// Navigates to the page.
         /// </summary>
-        /// <param name="RESTfulParameters">Array of parameters of a RESTful call</param>
-        protected internal void Go(params string[] RESTfulParameters)
+        /// <param name="RESTParameters">Array of parameters of a RESTful call</param>
+        protected internal void Go(params string[] RESTParameters)
         {
-            Go(RESTfulParameters, null);
+            Go(RESTParameters, null);
         }
 
         /// <summary>
         /// Navigates to the page.
         /// </summary>
-        /// <param name="RESTfulParameters">Array of parameters of a RESTful call</param>
+        /// <param name="RESTParameters">Array of parameters of a RESTful call</param>
         /// <param name="queryString">Query string of the call</param>
-        protected internal void Go(string[] RESTfulParameters, string queryString)
+        protected internal void Go(string[] RESTParameters, string queryString)
         {
-            string parameters = ParametersToString(RESTfulParameters, queryString);
+            string parameters = ParametersToString(RESTParameters, queryString);
 
             FlowManager.Load(this, true, false, parameters);
 
@@ -149,14 +149,14 @@
         /// </summary>
         /// <typeparam name="TPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
         /// <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
-        /// <param name="RESTfulParameters">REST parameters to attach to the forwarded page URL. If no parameters to be sent, just leave this as null</param>
-        /// <param name="queryString">Querystring parameters to attach to the forwarded page URL. If no parameters to be sent, just leave this as null</param>
-        protected void Submit<TPage>(Action action, string[] RESTfulParameters, string queryString) where TPage : Page
+        /// <param name="RESTParameters">REST parameters to attach to the forwarded page URL</param>
+        /// <param name="queryString">Querystring parameters to attach to the forwarded page URL</param>
+        protected void Submit<TPage>(Action action, string[] RESTParameters, string queryString) where TPage : Page
         {
             action();
 
-            string parameters = ParametersToString(RESTfulParameters, queryString);
-
+            string parameters = ParametersToString(RESTParameters, queryString);
+            
             FlowManager.Forward<TPage>(this, parameters);
         }
 
@@ -164,7 +164,7 @@
         /// Submits an action.
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
-        /// <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error. By default, it forwards to the current page</typeparam>
+        /// <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error</typeparam>
         /// <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
         protected void Submit<TSuccessPage, TErrorPage>(Action action)
             where TSuccessPage : Page
@@ -177,17 +177,17 @@
         /// Submits an action.
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
-        /// <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error. By default, it forwards to the current page</typeparam>
+        /// <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error</typeparam>
         /// <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
-        /// <param name="RESTfulParameters">REST parameters to attach to the forwarded page URL</param>
+        /// <param name="RESTParameters">REST parameters to attach to the forwarded page URL</param>
         /// <param name="queryString">Querystring parameters to attach to the forwarded page URL</param>
-        protected void Submit<TSuccessPage, TErrorPage>(Action action, string[] RESTfulParameters, string queryString)
+        protected void Submit<TSuccessPage, TErrorPage>(Action action, string[] RESTParameters, string queryString)
             where TSuccessPage : Page
             where TErrorPage : Page
         {
             action();
 
-            string parameters = ParametersToString(RESTfulParameters, queryString);
+            string parameters = ParametersToString(RESTParameters, queryString);
 
             FlowManager.Forward<TSuccessPage, TErrorPage>(parameters);
         }
