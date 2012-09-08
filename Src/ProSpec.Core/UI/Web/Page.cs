@@ -88,7 +88,7 @@
             return parametersAsString;
         }
 
-        protected PageFlowManager FlowManager
+        private PageFlowManager FlowManager
         {
             get { return PageFlowManager.Current; }
         }

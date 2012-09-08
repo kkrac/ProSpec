@@ -29,7 +29,7 @@
 
                     globalContext.Set<WebStepsContext>(stepsContext);
                 }
-
+                
                 return stepsContext;
             }
         }
