@@ -50,7 +50,7 @@ namespace Sample.Acceptance.Steps.UI
         [When(@"I go to the sign up page")]
         public void When_I_Go_To_The_Sign_Up_Page()
         {
-            Driver.OfType<LoginPage>().GoToSignUp();
+            (Driver as LoginPage).GoToSignUp();
         }
 
         [When(@"I submit the following user account information")]

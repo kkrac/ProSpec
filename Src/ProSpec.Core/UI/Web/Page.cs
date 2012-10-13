@@ -44,16 +44,6 @@
         public string Uri { get; private set; }
 
         /// <summary>
-        /// Returns the page that is of a specific type.
-        /// </summary>
-        /// <typeparam name="T">Type of the page.</typeparam>
-        /// <returns>Reference to the page</returns>
-        public T OfType<T>() where T : ITestDriver
-        {
-            return (T)(this as object);
-        }
-
-        /// <summary>
         /// Used to validate the fields in a page.
         /// </summary>
         protected virtual void Validate()

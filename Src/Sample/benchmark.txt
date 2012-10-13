@@ -693,3 +693,33 @@ Target: Sample.Domain.Services.Implementations.UserAccountService
 Method: Void ValidateLogin(System.String, System.String)(john.doe, MyPassword)
 Timestamp: 12/10/2012 09:01:14 p.m.
 Milliseconds: 3
+============================================================================
+Target: Sample.Domain.Services.Implementations.UserAccountService
+Method: Boolean IsTemporaryAccountValid(System.String, System.String)(john.doe2, 345)
+Timestamp: 12/10/2012 09:11:00 p.m.
+Milliseconds: 23
+============================================================================
+Target: Sample.Domain.Services.Implementations.UserAccountService
+Method: Boolean IsTemporaryAccountValid(System.String, System.String)(john.doe2, 123)
+Timestamp: 12/10/2012 09:11:03 p.m.
+Milliseconds: 0
+============================================================================
+Target: Sample.Domain.Services.Implementations.UserAccountService
+Method: Boolean IsTemporaryAccountValid(System.String, System.String)(john.doe, 345)
+Timestamp: 12/10/2012 09:11:04 p.m.
+Milliseconds: 0
+============================================================================
+Target: Sample.Domain.Services.Implementations.UserAccountService
+Method: Boolean IsTemporaryAccountValid(System.String, System.String)(john.doe, 12345678)
+Timestamp: 12/10/2012 09:11:06 p.m.
+Milliseconds: 0
+============================================================================
+Target: Sample.Domain.Services.Implementations.UserAccountService
+Method: Void ActivateAccount(System.String)(john.doe)
+Timestamp: 12/10/2012 09:11:06 p.m.
+Milliseconds: 6
+============================================================================
+Target: Sample.Domain.Services.Implementations.UserAccountService
+Method: Void ValidateLogin(System.String, System.String)(john.doe, MyPassword)
+Timestamp: 12/10/2012 09:11:17 p.m.
+Milliseconds: 3
