@@ -40,7 +40,7 @@ namespace Sample.Acceptance.Steps.UI
             
             CurrentUser = GetUser(userId);
 
-            ConfirmationPage confirmation = Load<ConfirmationPage>();
+            ConfirmationPage confirmation = new ConfirmationPage();
 
             UserAccountConfirmationViewModel confirmationData = table.CreateInstance<UserAccountConfirmationViewModel>();
 
@@ -54,29 +54,26 @@ namespace Sample.Acceptance.Steps.UI
         }
 
         [When(@"I submit the following user account information")]
-
         public void When_I_Submit_The_Following_User_Account_Information(Table table)
         {
             UserAccountNewViewModel accountData = table.CreateInstance<UserAccountNewViewModel>();
 
-            SignUpPage signUp = Driver.OfType<SignUpPage>();
+            SignUpPage signUp = Driver as SignUpPage;
 
             signUp.Submit(accountData);
         }
 
         [When(@"I submit the following login information")]
-
         public void When_I_Submit_The_Following_Log_in_Information(Table table)
         {
             UserAccountLoginViewModel loginData = table.CreateInstance<UserAccountLoginViewModel>();
 
-            LoginPage login = Driver.OfType<LoginPage>();
+            LoginPage login = Driver as LoginPage;
 
             login.Submit(loginData);
         }
 
         [Then(@"^(?:I should be redirected to|I should continue on) the home page")]
-
         public void Then_I_Should_Be_On_The_Home_Page()
         {
             Driver.ShouldBeType<HomePage>();
@@ -89,7 +86,6 @@ namespace Sample.Acceptance.Steps.UI
         }
 
         [Then(@"^(?:I should be redirected to|I should continue on) the log in page")]
-
         public void Then_I_Should_Be_On_The_Log_In_Page()
         {
             Driver.ShouldBeType<LoginPage>();
@@ -102,7 +98,6 @@ namespace Sample.Acceptance.Steps.UI
         }
 
         [Then(@"^(?:I should be redirected to|I should continue on) the temporary account page")]
-
         public void Then_I_Should_Be_Redirected_To_The_Temporary_Account_Page()
         {
             ScenarioContext.Current.Pending();

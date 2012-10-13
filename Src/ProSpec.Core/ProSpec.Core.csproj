@@ -64,7 +64,6 @@
     <Compile Include="GlobalContext.cs" />
     <Compile Include="Hosting\IServer.cs" />
     <Compile Include="Hosting\Web\AspNetDevServer.cs" />
-    <Compile Include="IFlowManager.cs" />
     <Compile Include="IStepsContext.cs" />
     <Compile Include="ITestDriver.cs" />
     <Compile Include="ITestFixtureSetup.cs" />
@@ -73,7 +72,6 @@
     <Compile Include="StepsContextBase.cs" />
     <Compile Include="UI\Web\IBrowser.cs" />
     <Compile Include="UI\Web\Page.cs" />
-    <Compile Include="UI\Web\PageFlowManager.cs" />
     <Compile Include="UI\Web\Page`1.cs" />
     <Compile Include="UI\Web\WebStepsContext.cs" />
     <Compile Include="UI\Web\WebTestFixtureSetup.cs" />

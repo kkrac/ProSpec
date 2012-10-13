@@ -34,14 +34,6 @@
             }
         }
 
-        /// <summary>
-        /// Reference to the flow manager.
-        /// </summary>
-        private PageFlowManager FlowManager
-        {
-            get { return PageFlowManager.Current; }
-        }
-
         internal IServer Server
         {
             get { return Get<IServer>(ObjectLifeSpan.Global); }
@@ -117,14 +109,81 @@
             }
         }
 
+        /// <summary>
+        /// Navigates to a page.
+        /// </summary>
+        /// <typeparam name="T">Type of the page t navigate to</typeparam>
+        /// <returns>Page object</returns>
         protected T GoTo<T>() where T : Page
         {
-            return FlowManager.LoadAndGo<T>();
+            Page page = CreatePage(typeof(T));
+
+            return (T)GoTo(page, string.Empty);
         }
 
-        protected T Load<T>() where T : Page
+        internal Page GoTo(Page page, string additionalParameters)
         {
-            return FlowManager.Load<T>();
+            page.RawUrl += additionalParameters;
+        
+            Current.Browser.GoTo(page.RawUrl);
+
+            Current.Driver = page;
+
+            return page;
+        }
+
+        private Page CreatePage(Type pageType)
+        {
+            Page page = Activator.CreateInstance(pageType) as Page;
+
+            return page;
+        }
+
+        /// <summary>
+        /// After an action finishes executing, it forwards the request to the same or to another page if the action finishes successfully. If the action fails, by default it forwards to the same page.
+        /// </summary>
+        /// <typeparam name="TPage">Page to forward to if the action completes successfully</typeparam>
+        /// <param name="source">Default page to forward to if action completes with an error.</param>
+        /// <param name="parameters">Parameters of the request</param>
+        internal void Forward<TPage>(Page source, string parameters) where TPage : Page
+        {
+            Forward(typeof(TPage), source, parameters);
+        }
+
+        /// <summary>
+        /// After an action finishes executing, it forwards the request to the same or to another page if the action finishes successfully.
+        /// </summary>
+        /// <typeparam name="TSuccessPage">Page to forward to if the action completes successfully</typeparam>
+        /// <typeparam name="TErrorPage">Page to forward to if the action fails</typeparam>
+        /// <param name="parameters">Parameters of the request</param>
+        internal void Forward<TSuccessPage, TErrorPage>(string parameters)
+            where TSuccessPage : Page
+            where TErrorPage : Page
+        {
+            Forward(typeof(TSuccessPage), typeof(TErrorPage), parameters);
+        }
+
+        private void Forward(Type successPageType, Type errorPageType, string parameters)
+        {
+            Page errorPage = CreatePage(errorPageType);
+
+            Forward(successPageType, errorPage, parameters);
+        }
+
+        private void Forward(Type successPageType, Page errorPage, string parameters)
+        {
+            Page successPage = CreatePage(successPageType);
+
+            successPage.RawUrl += parameters;
+
+            if (Current.Browser.IsOnPage(successPage))
+            {
+                Current.Driver = successPage;
+            }
+            else
+            {
+                Current.Driver = errorPage;
+            }
         }
     }
 }

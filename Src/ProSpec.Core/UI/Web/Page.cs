@@ -88,11 +88,6 @@
             return parametersAsString;
         }
 
-        private PageFlowManager FlowManager
-        {
-            get { return PageFlowManager.Current; }
-        }
-
         /// <summary>
         /// Determines if the page contains a certain text.
         /// </summary>
@@ -129,7 +124,7 @@
         {
             string parameters = ParametersToString(RESTParameters, queryString);
 
-            FlowManager.Load(this, true, false, parameters);
+            Context.GoTo(this, parameters);
 
             Validate();
         }
@@ -157,7 +152,7 @@
 
             string parameters = ParametersToString(RESTParameters, queryString);
             
-            FlowManager.Forward<TPage>(this, parameters);
+            Context.Forward<TPage>(this, parameters);
         }
 
         /// <summary>
@@ -189,7 +184,7 @@
 
             string parameters = ParametersToString(RESTParameters, queryString);
 
-            FlowManager.Forward<TSuccessPage, TErrorPage>(parameters);
+            Context.Forward<TSuccessPage, TErrorPage>(parameters);
         }
     }
 }
