@@ -112,9 +112,9 @@
         /// <summary>
         /// Navigates to a page.
         /// </summary>
-        /// <typeparam name="T">Type of the page t navigate to</typeparam>
+        /// <typeparam name="T">Type of the page to navigate to</typeparam>
         /// <returns>Page object</returns>
-        protected T GoTo<T>() where T : Page
+        protected override T GoTo<T>()
         {
             Page page = CreatePage(typeof(T));
 
@@ -140,22 +140,22 @@
         }
 
         /// <summary>
-        /// After an action finishes executing, it forwards the request to the same or to another page if the action finishes successfully. If the action fails, by default it forwards to the same page.
+        /// After an action finishes executing, it forwards the request to the same or to another page. If the action failed, by default it forwards to the same page.
         /// </summary>
         /// <typeparam name="TPage">Page to forward to if the action completes successfully</typeparam>
         /// <param name="source">Default page to forward to if action completes with an error.</param>
-        /// <param name="parameters">Parameters of the request</param>
+        /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
         internal void Forward<TPage>(Page source, string parameters) where TPage : Page
         {
             Forward(typeof(TPage), source, parameters);
         }
 
         /// <summary>
-        /// After an action finishes executing, it forwards the request to the same or to another page if the action finishes successfully.
+        /// After an action finishes executing, it forwards the request to the same or to another page.
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to forward to if the action completes successfully</typeparam>
         /// <typeparam name="TErrorPage">Page to forward to if the action fails</typeparam>
-        /// <param name="parameters">Parameters of the request</param>
+        /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
         internal void Forward<TSuccessPage, TErrorPage>(string parameters)
             where TSuccessPage : Page
             where TErrorPage : Page

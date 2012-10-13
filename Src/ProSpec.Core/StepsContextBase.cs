@@ -31,6 +31,13 @@ namespace ProSpec.Core
         }
 
         /// <summary>
+        /// Goes to a specific driver.
+        /// </summary>
+        /// <typeparam name="T">Type of the driver to go to</typeparam>
+        /// <returns>Driver object</returns>
+        protected abstract T GoTo<T>() where T : TDriver;
+
+        /// <summary>
         /// Gets an object from the scenario context.
         /// </summary>
         /// <typeparam name="T">Type of the object to retrieve</typeparam>
