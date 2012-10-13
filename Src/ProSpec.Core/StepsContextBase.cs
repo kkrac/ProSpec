@@ -31,9 +31,9 @@ namespace ProSpec.Core
         }
 
         /// <summary>
-        /// Goes to a specific driver.
+        /// Activates a specific driver.
         /// </summary>
-        /// <typeparam name="T">Type of the driver to go to</typeparam>
+        /// <typeparam name="T">Type of the driver to activate</typeparam>
         /// <returns>Driver object</returns>
         protected abstract T GoTo<T>() where T : TDriver;
 

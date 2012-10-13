@@ -140,10 +140,10 @@
         }
 
         /// <summary>
-        /// After an action finishes executing, it forwards the request to the same or to another page. If the action failed, by default it forwards to the same page.
+        /// It forwards the request after an action on the page has finished executing. If the action failed, by default it forwards to the same page.
         /// </summary>
-        /// <typeparam name="TPage">Page to forward to if the action completes successfully</typeparam>
-        /// <param name="source">Default page to forward to if action completes with an error.</param>
+        /// <typeparam name="TPage">Page to forward to if the action finishes successfully</typeparam>
+        /// <param name="source">Default page to forward to if the action fails</param>
         /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
         internal void Forward<TPage>(Page source, string parameters) where TPage : Page
         {
@@ -151,9 +151,9 @@
         }
 
         /// <summary>
-        /// After an action finishes executing, it forwards the request to the same or to another page.
+        /// It forwards the request after an action on the page has finished executing.
         /// </summary>
-        /// <typeparam name="TSuccessPage">Page to forward to if the action completes successfully</typeparam>
+        /// <typeparam name="TSuccessPage">Page to forward to if the action finishes successfully</typeparam>
         /// <typeparam name="TErrorPage">Page to forward to if the action fails</typeparam>
         /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
         internal void Forward<TSuccessPage, TErrorPage>(string parameters)
