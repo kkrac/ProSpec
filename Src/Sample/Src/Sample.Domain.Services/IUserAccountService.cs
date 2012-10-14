@@ -4,9 +4,8 @@ namespace Sample.Domain.Services
 {
     public interface IUserAccountService
     {
-        void ActivateAccount(string userId);
+        bool ActivateAccount(string userId, string token);
         void ValidateLogin(string userName, string password);
         void CreateAccount(ISampleUser user, string password, string passwordConfirmation, bool acceptsTerms);
-        bool IsTemporaryAccountValid(string userName, string token);
     }
 }

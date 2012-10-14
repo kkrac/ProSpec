@@ -49,7 +49,7 @@ namespace Sample.Domain.Services.Implementations
             emailService.SendMessage(message);
         }
 
-        public bool IsTemporaryAccountValid(string userId, string token)
+        private bool IsTemporaryAccountValid(string userId, string token)
         {
             Check.Require(!string.IsNullOrEmpty(userId), "The user id cannot be empty");
             Check.Require(!string.IsNullOrEmpty(token), "The token cannot be empty");
@@ -59,9 +59,18 @@ namespace Sample.Domain.Services.Implementations
             return token.Equals(tokenInDB);
         }
 
-        public void ActivateAccount(string userId)
+        public bool ActivateAccount(string userId, string token)
         {
-            dao.ActivateAccount(userId);
+            if (!IsTemporaryAccountValid(userId, token))
+            {
+                return false;
+            }
+            else
+            {
+                dao.ActivateAccount(userId);
+
+                return true;
+            }
         }
     }
 }

@@ -28,12 +28,10 @@ namespace Sample.UI.Web.Controllers
 
         public ActionResult Confirm(string userId, string token)
         {
-            bool isValid = service.IsTemporaryAccountValid(userId, token);
+            bool activated = service.ActivateAccount(userId, token);
 
-            if (isValid)
+            if (activated)
             {
-                service.ActivateAccount(userId);
-
                 return RedirectToAction("LogIn", "UserAccount");
             }
             else
