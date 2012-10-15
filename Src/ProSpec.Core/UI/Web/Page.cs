@@ -130,7 +130,7 @@
         }
 
         /// <summary>
-        /// Submits an action.
+        /// Submits an action and forwards the request. If the action fails, it stays on the same page.
         /// </summary>
         /// <typeparam name="TPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
         /// <param name="action">A browser action that triggers a post to the server (eg: button click)</param>
@@ -146,7 +146,7 @@
         }
 
         /// <summary>
-        /// Submits an action.
+        /// Submits an action and forwards the request.
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
         /// <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error</typeparam>
@@ -159,7 +159,7 @@
         }
 
         /// <summary>
-        /// Submits an action.
+        /// Submits an action and forwards the request.
         /// </summary>
         /// <typeparam name="TSuccessPage">Page to which the request is forwarded when the action finishes its execution successfully</typeparam>
         /// <typeparam name="TErrorPage">Page to which the request is forwarded when the action finishes its execution with an error</typeparam>
