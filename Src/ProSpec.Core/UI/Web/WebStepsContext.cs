@@ -143,11 +143,15 @@
         /// It forwards the request after an action on the page has finished executing. If the action failed, by default it forwards to the same page.
         /// </summary>
         /// <typeparam name="TPage">Page to forward to if the action finishes successfully</typeparam>
-        /// <param name="source">Default page to forward to if the action fails</param>
+        /// <param name="errorPage">Default page to forward to if the action fails</param>
         /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
-        internal void Forward<TPage>(Page source, string parameters) where TPage : Page
+        internal void Forward<TPage>(Page errorPage, string parameters) where TPage : Page
         {
-            Forward(typeof(TPage), source, parameters);
+            Page successPage = CreatePage(typeof(TPage));
+
+            successPage.RawUrl += parameters;
+
+            SetCurrentPage(successPage, errorPage);
         }
 
         /// <summary>
@@ -160,22 +164,16 @@
             where TSuccessPage : Page
             where TErrorPage : Page
         {
-            Forward(typeof(TSuccessPage), typeof(TErrorPage), parameters);
-        }
-
-        private void Forward(Type successPageType, Type errorPageType, string parameters)
-        {
-            Page errorPage = CreatePage(errorPageType);
-
-            Forward(successPageType, errorPage, parameters);
-        }
-
-        private void Forward(Type successPageType, Page errorPage, string parameters)
-        {
-            Page successPage = CreatePage(successPageType);
+            Page successPage = CreatePage(typeof(TSuccessPage));
+            Page errorPage = CreatePage(typeof(TErrorPage));
 
             successPage.RawUrl += parameters;
 
+            SetCurrentPage(successPage, errorPage);
+        }
+
+        private void SetCurrentPage(Page successPage, Page errorPage)
+        {
             if (Current.Browser.IsOnPage(successPage))
             {
                 Current.Driver = successPage;
