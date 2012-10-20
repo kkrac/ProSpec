@@ -3,6 +3,11 @@
 	As an anonymous user
 	I want to create an account
 
+Scenario: navigate to sign up page
+	Given I am on the log in page
+	When I go to the sign up page
+	Then I should be redirected to the sign up page
+
 Scenario: create account with valid data
 	Given I am on the sign up page
 	When I submit the following user account information

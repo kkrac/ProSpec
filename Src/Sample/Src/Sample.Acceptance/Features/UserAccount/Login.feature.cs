@@ -232,23 +232,6 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("navigate to sign up page")]
-        public virtual void NavigateToSignUpPage()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("navigate to sign up page", ((string[])(null)));
-#line 51
-this.ScenarioSetup(scenarioInfo);
-#line 6
-this.FeatureBackground();
-#line 52
- testRunner.When("I go to the sign up page");
-#line 53
- testRunner.Then("I should be redirected to the sign up page");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore

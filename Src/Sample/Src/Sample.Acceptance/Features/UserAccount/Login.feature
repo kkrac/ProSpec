@@ -47,7 +47,3 @@ Scenario: log in with existing user name but empty password
 	| Password |          |
 	Then I should continue on the login page
 	And I should see the message 'The password is required'
-
-Scenario: navigate to sign up page
-	When I go to the sign up page
-	Then I should be redirected to the sign up page
