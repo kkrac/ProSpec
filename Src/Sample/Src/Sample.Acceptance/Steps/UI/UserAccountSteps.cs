@@ -37,7 +37,7 @@ namespace Sample.Acceptance.Steps.UI
         public void When_I_Confirm_An_Account_With_The_Following_Information(Table table)
         {
             string userId = table.Rows[0]["UserName"];
-            
+
             CurrentUser = GetUser(userId);
 
             ConfirmationPage confirmation = new ConfirmationPage();
@@ -85,10 +85,16 @@ namespace Sample.Acceptance.Steps.UI
             Driver.ShouldBeType<ConfirmationPage>();
         }
 
-        [Then(@"^(?:I should be redirected to|I should continue on) the log in page")]
+        [Then(@"^(?:I should be redirected to|I should continue on) the login page")]
         public void Then_I_Should_Be_On_The_Log_In_Page()
         {
             Driver.ShouldBeType<LoginPage>();
+        }
+
+        [Then(@"^(?:I should be redirected to|I should continue on) the sign up page")]
+        public void Then_I_Should_Be_On_The_Sign_Up_Page()
+        {
+            Driver.ShouldBeType<SignUpPage>();
         }
 
         [Then(@"the account should become active")]

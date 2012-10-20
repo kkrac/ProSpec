@@ -142,21 +142,6 @@
         /// <summary>
         /// It forwards the request after an action on the page has finished executing.
         /// </summary>
-        /// <typeparam name="TPage">Page to forward to if the action finishes successfully</typeparam>
-        /// <param name="errorPage">Page to forward to if the action fails</param>
-        /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
-        internal void Forward<TPage>(Page errorPage, string parameters) where TPage : Page
-        {
-            Page successPage = CreatePage(typeof(TPage));
-
-            successPage.RawUrl += parameters;
-
-            SetCurrentPage(successPage, errorPage);
-        }
-
-        /// <summary>
-        /// It forwards the request after an action on the page has finished executing.
-        /// </summary>
         /// <typeparam name="TSuccessPage">Page to forward to if the action finishes successfully</typeparam>
         /// <typeparam name="TErrorPage">Page to forward to if the action fails</typeparam>
         /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
@@ -164,8 +149,20 @@
             where TSuccessPage : Page
             where TErrorPage : Page
         {
-            Page successPage = CreatePage(typeof(TSuccessPage));
             Page errorPage = CreatePage(typeof(TErrorPage));
+
+            Forward<TSuccessPage>(errorPage, parameters);
+        }
+
+        /// <summary>
+        /// It forwards the request after an action on the page has finished executing.
+        /// </summary>
+        /// <typeparam name="TPage">Page to forward to if the action finishes successfully</typeparam>
+        /// <param name="errorPage">Page to forward to if the action fails</param>
+        /// <param name="parameters">Optional parameters to pass to the page the request is forwarded to</param>
+        internal void Forward<TPage>(Page errorPage, string parameters) where TPage : Page
+        {
+            Page successPage = CreatePage(typeof(TPage));
 
             successPage.RawUrl += parameters;
 

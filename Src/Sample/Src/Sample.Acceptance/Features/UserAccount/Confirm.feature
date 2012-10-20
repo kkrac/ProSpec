@@ -13,7 +13,7 @@ Scenario: confirm account with valid user name and valid token
 	| UserName | Token    |
 	| john.doe | 12345678 |
 	Then the account should become active
-	And I should be redirected to the log in page
+	And I should be redirected to the login page
 
 Scenario: confirm account with valid user name and invalid token
 	When I confirm an account with the following information
