@@ -50,13 +50,7 @@
         {
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="RESTParameters"></param>
-        /// <param name="queryString"></param>
-        /// <returns></returns>
-        protected string ParametersToString(string[] RESTParameters, string queryString)
+        private string ParametersToString(string[] RESTParameters, string queryString)
         {
             string parametersAsString = string.Empty;
 
