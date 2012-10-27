@@ -17,12 +17,6 @@
             RawUrl = Uri;
         }
 
-        internal static Page Current
-        {
-            get { return Context.Get<Page>(); }
-            set { Context.Set<Page>(value); }
-        }
-
         private static WebStepsContext Context
         {
             get { return WebStepsContext.Current; }

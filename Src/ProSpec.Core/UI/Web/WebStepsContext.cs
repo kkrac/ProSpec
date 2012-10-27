@@ -73,8 +73,8 @@
         /// </summary>
         public override Page Driver
         {
-            get { return Page.Current; }
-            internal set { Page.Current = value; }
+            get { return Current.Get<Page>(); }
+            internal set { Current.Set<Page>(value); }
         }
 
         /// <summary>
