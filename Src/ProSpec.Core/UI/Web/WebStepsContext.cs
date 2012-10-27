@@ -15,7 +15,7 @@
         /// <summary>
         /// Singleton instance of the context.
         /// </summary>
-        public static WebStepsContext Current
+        protected internal static WebStepsContext Current
         {
             get
             {
