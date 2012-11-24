@@ -42,9 +42,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\..\SharedLibs\SpecFlow\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
     <Reference Include="WatiN.Core">
       <HintPath>..\..\SharedLibs\WatiN\WatiN.Core.dll</HintPath>
     </Reference>
