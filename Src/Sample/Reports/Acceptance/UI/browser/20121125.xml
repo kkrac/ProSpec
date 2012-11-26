@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <NUnitExecutionReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectName="Sample.Acceptance" generatedAt="11/25/2012 16:09" xmlns="urn:TechTalk:SpecFlow.Report">
   <NUnitXmlTestResult>
-    <test-results name="C:\Users\kevin\ProSpec\Src\Sample\Bin\Sample.Acceptance.dll" total="12" errors="0" failures="0" not-run="0" inconclusive="1" ignored="0" skipped="0" invalid="0" date="2012-11-25" time="16:09:35" xmlns="urn:NUnit">
-      <environment nunit-version="2.5.9.10348" clr-version="2.0.50727.5466" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\kevin\ProSpec\Src\Sample\Build" machine-name="KEVIN-PC" user="kevin" user-domain="kevin-PC" />
+    <test-results name="C:\Users\user\ProSpec\Src\Sample\Bin\Sample.Acceptance.dll" total="12" errors="0" failures="0" not-run="0" inconclusive="1" ignored="0" skipped="0" invalid="0" date="2012-11-25" time="16:09:35" xmlns="urn:NUnit">
+      <environment nunit-version="2.5.9.10348" clr-version="2.0.50727.5466" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\user\ProSpec\Src\Sample\Build" machine-name="user-PC" user="user" user-domain="user-PC" />
       <culture-info current-culture="es-AR" current-uiculture="en-US" />
-      <test-suite type="Assembly" name="C:\Users\kevin\ProSpec\Src\Sample\Bin\Sample.Acceptance.dll" executed="True" result="Success" success="True" time="43.612" asserts="0">
+      <test-suite type="Assembly" name="C:\Users\user\ProSpec\Src\Sample\Bin\Sample.Acceptance.dll" executed="True" result="Success" success="True" time="43.612" asserts="0">
         <results>
           <test-suite type="Namespace" name="Sample" executed="True" result="Success" success="True" time="43.594" asserts="0">
             <results>
