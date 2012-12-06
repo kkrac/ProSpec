@@ -6,10 +6,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>log in</title>
-    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
-    <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
-    <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
-    <script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
     <link rel="Stylesheet" href="/Content/Site.css" type="text/css" />
 </head>
 <body>

@@ -21,7 +21,6 @@ namespace Sample.Acceptance.Steps.UI
         }
 
         [Given(@"I am on the log in page")]
-
         public void Given_I_Am_On_The_Login_Page()
         {
             GoTo<LoginPage>();
