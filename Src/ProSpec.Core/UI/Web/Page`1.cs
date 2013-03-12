@@ -6,10 +6,5 @@
         {
             get { return (TBrowser)WebStepsContext.Current.Browser; }
         }
-
-        protected override abstract string RelativeUrl
-        {
-            get;
-        }
     }
 }
