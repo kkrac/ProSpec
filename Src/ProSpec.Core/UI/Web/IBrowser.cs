@@ -1,8 +1,9 @@
 ﻿using System.Net;
+using System;
 
 namespace ProSpec.Core.UI.Web
 {
-    public interface IBrowser
+    public interface IBrowser : IDisposable
     {
         void GoTo(string url);
         string Url { get; }

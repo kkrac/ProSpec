@@ -4,7 +4,7 @@
     using System.Net;
     using ProSpec.Core.Hosting;
     using Should;
-    using Should.Sdk;
+    using Should.Core.Exceptions;
     using TechTalk.SpecFlow;
 
     /// <summary>
@@ -76,39 +76,7 @@
             get { return Current.Get<Page>(); }
             internal set { Current.Set<Page>(value); }
         }
-
-        /// <summary>
-        /// Verifies the http status.
-        /// </summary>
-        /// <param name="statusCode">Http status of the last navigation</param>
-        protected void AssertHttpStatusIs(int statusCode)
-        {
-            try
-            {
-                HttpStatusCode expectedStatusCode = (HttpStatusCode)Enum.Parse(typeof(HttpStatusCode), statusCode.ToString());
-
-                Current.Browser.Status.ShouldEqual(expectedStatusCode);
-            }
-            catch (EqualException ex)
-            {
-                string browserOutput = string.Empty;
-
-                if (!string.IsNullOrEmpty(Current.Browser.Text))
-                {
-                    browserOutput = Environment.NewLine + Environment.NewLine;
-                    browserOutput += Current.Browser.Text;
-                }
-
-                Exception exToThrow = new AssertException(ex.Message + browserOutput);
-
-                throw exToThrow;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
+        
         /// <summary>
         /// Navigates to a page.
         /// </summary>
@@ -116,16 +84,69 @@
         /// <returns>Page object</returns>
         protected override T GoTo<T>()
         {
+            return (T)GoTo<T>(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Navigates to a page.
+        /// </summary>
+        /// <typeparam name="T">Type of the page to navigate to</typeparam>
+        /// <returns>Page object</returns>
+        protected T GoTo<T>(HttpStatusCode status) where T : Page
+        {
+            return (T)GoTo<T>(null, null, status);
+        }
+
+        /// <summary>
+        /// Navigates to a page.
+        /// </summary>
+        /// <param name="RESTParameters"></param>
+        protected T GoTo<T>(string[] RESTParameters) where T : Page
+        {
+            return (T)GoTo<T>(RESTParameters, HttpStatusCode.OK);
+        }
+
+        protected T GoTo<T>(string querystring) where T : Page
+        {
+            return (T)GoTo<T>(null, querystring);
+        }
+
+        protected T GoTo<T>(string[] RESTParameters, string querystring) where T : Page
+        {
+            return (T)GoTo<T>(RESTParameters, querystring, HttpStatusCode.OK);
+        }
+
+        protected T GoTo<T>(string[] RESTParameters, HttpStatusCode status) where T : Page
+        {
+            return (T)GoTo<T>(RESTParameters, null, status);
+        }
+
+        protected T GoTo<T>(string querystring, HttpStatusCode status) where T : Page
+        {
+            return (T)GoTo<T>(null, querystring, status);
+        }
+
+        protected T GoTo<T>(string[] RESTParameters, string querystring, HttpStatusCode status) where T : Page
+        {
             Page page = CreatePage(typeof(T));
 
-            return (T)GoTo(page, string.Empty);
+            string additionalParameters = ParametersHelper.ToString(RESTParameters, querystring);
+
+            return (T)GoTo(page, additionalParameters, status);
         }
 
         internal Page GoTo(Page page, string additionalParameters)
         {
+            return GoTo(page, additionalParameters, HttpStatusCode.OK);
+        }
+
+        internal Page GoTo(Page page, string additionalParameters, HttpStatusCode status)
+        {
             page.RawUrl += additionalParameters;
         
             Current.Browser.GoTo(page.RawUrl);
+
+            Browser.Status.AssertEquals(status, page.RawUrl);
 
             Current.Driver = page;
 
@@ -169,6 +190,24 @@
             SetCurrentPage(successPage, errorPage);
         }
 
+        protected void ShouldBeAt<T>() where T : Page
+        {
+            try
+            {
+                Driver.ShouldBeType<T>();
+            }
+            catch (AssertException)
+            {
+                Page expectedPage = CreatePage(typeof(T));
+
+                throw new ExpectedPageMismatchException(Driver, expectedPage, Browser.Url, expectedPage.RawUrl);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         private void SetCurrentPage(Page successPage, Page errorPage)
         {
             if (Current.Browser.IsOnPage(successPage))
@@ -177,7 +216,14 @@
             }
             else
             {
-                Current.Driver = errorPage;
+                if (Browser.Status == HttpStatusCode.NotFound)
+                {
+                    Current.Driver = new PageNotFound();
+                }
+                else
+                {
+                    Current.Driver = errorPage;
+                }
             }
         }
     }

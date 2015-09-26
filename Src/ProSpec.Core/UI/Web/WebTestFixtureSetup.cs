@@ -2,6 +2,7 @@
 {
     using TwoK.IoC;
     using ProSpec.Core.Hosting;
+    using System.Diagnostics;
 
     /// <summary>
     /// Fixture to initialize and tear down components used in a set of tests of a web application.
@@ -63,9 +64,12 @@
         {
             IBrowser browser = Context.Browser;
 
-            IoCProvider.Release(browser);
-
-            browser.Close();
+            if (browser != null)
+            {
+                IoCProvider.Release(browser);
+                browser.Close();
+                browser = null;
+            }
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿#if Browser_Tests
+﻿//#if Browser_Tests
 
 using Sample.Acceptance.Support.Pages;
 using Sample.Acceptance.Support.Pages.UserAccount;
@@ -110,4 +110,4 @@ namespace Sample.Acceptance.Steps.UI
     }
 }
 
-#endif
+//#endif

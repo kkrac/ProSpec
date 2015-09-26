@@ -125,16 +125,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sample.Data.Access\Sample.Data.Access.csproj">
-      <Project>{6F7F8333-F9A8-403A-95BC-10E18F43A18F}</Project>
-      <Name>Sample.Data.Access</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sample.Domain.Model\Sample.Domain.Model.csproj">
-      <Project>{3E5A9272-10B2-4CD5-969B-58CB5FC4A44F}</Project>
-      <Name>Sample.Domain.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -102,32 +102,6 @@ namespace Sample.Acceptance.Support.Pages.UserAccount
             get { return "UserAccount/SignUp"; }
         }
 
-        protected override void Validate()
-        {
-            UserNameField.Exists.ShouldBeTrue("UserName field not found");
-            UserNameField.GetAttributeValue("type").ToLower().ShouldEqual("text");
-
-            PasswordField.Exists.ShouldBeTrue("Password field not found");
-            PasswordField.GetAttributeValue("type").ToLower().ShouldEqual("password");
-
-            FirstNameField.Exists.ShouldBeTrue("FirstName field not found");
-            FirstNameField.GetAttributeValue("type").ToLower().ShouldEqual("text");
-
-            LastNameField.Exists.ShouldBeTrue("LastName field not found");
-            LastNameField.GetAttributeValue("type").ToLower().ShouldEqual("text");
-
-            DateOfBirthField.Exists.ShouldBeTrue("DateOfBirth field not found");
-            DateOfBirthField.GetAttributeValue("type").ToLower().ShouldEqual("text");
-
-            EmailField.Exists.ShouldBeTrue("Email field not found");
-            EmailField.GetAttributeValue("type").ToLower().ShouldEqual("text");
-
-            AcceptsTermsField.Exists.ShouldBeTrue("AcceptsTerms field not found");
-
-            CreateAccountButton.Exists.ShouldBeTrue("CreateAccount button not found");
-            CreateAccountButton.GetAttributeValue("type").ToLower().ShouldEqual("submit");
-        }
-
         public void Submit(UserAccountNewViewModel account)
         {
             UserName            = account.UserName;

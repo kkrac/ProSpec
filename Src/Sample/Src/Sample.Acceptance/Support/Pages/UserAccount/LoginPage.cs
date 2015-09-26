@@ -8,20 +8,6 @@ namespace Sample.Acceptance.Support.Pages.UserAccount
 {
     public class LoginPage : Page<WatiNBrowser>
     {
-        protected override void Validate()
-        {
-            UserNameField.Exists.ShouldBeTrue();
-            UserNameField.GetAttributeValue("type").ToLower().ShouldEqual("text");
-
-            PasswordField.Exists.ShouldBeTrue();
-            PasswordField.GetAttributeValue("type").ToLower().ShouldEqual("password");
-
-            LoginButton.Exists.ShouldBeTrue();
-            LoginButton.GetAttributeValue("type").ToLower().ShouldEqual("submit");
-
-            CreateAccountLink.Exists.ShouldBeTrue();
-        }
-
         private TextField UserNameField
         {
             get { return Browser.TextField("UserName"); }

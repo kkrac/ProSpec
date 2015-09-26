@@ -1,6 +1,8 @@
-﻿namespace ProSpec.Core.UI.Web
+﻿using System.Net;
+
+namespace ProSpec.Core.UI.Web
 {
-    public abstract class Page<TBrowser> : Page where TBrowser : IBrowser
+    public abstract class Page<TBrowser> : Page //where TBrowser : IBrowser
     {
         protected TBrowser Browser
         {

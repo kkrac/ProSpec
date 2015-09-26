@@ -1,6 +1,9 @@
 ﻿namespace ProSpec.Core.UI.Web
 {
     using System;
+    using System.Diagnostics;
+    using System.Net;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Page object base implementation.
@@ -17,7 +20,7 @@
             RawUrl = Uri;
         }
 
-        private static WebStepsContext Context
+        internal static WebStepsContext Context
         {
             get { return WebStepsContext.Current; }
         }
@@ -38,35 +41,6 @@
         public string Uri { get; private set; }
 
         /// <summary>
-        /// Used to validate the fields in a page.
-        /// </summary>
-        protected virtual void Validate()
-        {
-        }
-
-        private string ParametersToString(string[] RESTParameters, string queryString)
-        {
-            string parametersAsString = string.Empty;
-
-            if (RESTParameters != null && RESTParameters.Length > 0)
-            {
-                parametersAsString = string.Join("/", RESTParameters);
-            }
-
-            if (queryString != null)
-            {
-                parametersAsString += queryString;
-            }
-
-            if (!string.IsNullOrEmpty(parametersAsString))
-            {
-                parametersAsString = string.Concat("/", parametersAsString);
-            }
-
-            return parametersAsString;
-        }
-
-        /// <summary>
         /// Determines if the page contains a certain text.
         /// </summary>
         /// <param name="text">Text to find on the page</param>
@@ -74,37 +48,6 @@
         public bool ContainsText(string text)
         {
             return Context.Browser.Text.Contains(text);
-        }
-
-        /// <summary>
-        /// Navigates to the page.
-        /// </summary>
-        protected internal void Go()
-        {
-            Go(new string[] { }, null);
-        }
-
-        /// <summary>
-        /// Navigates to the page.
-        /// </summary>
-        /// <param name="RESTParameters">Array of parameters of a RESTful call</param>
-        protected internal void Go(params string[] RESTParameters)
-        {
-            Go(RESTParameters, null);
-        }
-
-        /// <summary>
-        /// Navigates to the page.
-        /// </summary>
-        /// <param name="RESTParameters">Array of parameters of a RESTful call</param>
-        /// <param name="queryString">Query string of the call</param>
-        protected internal void Go(string[] RESTParameters, string queryString)
-        {
-            string parameters = ParametersToString(RESTParameters, queryString);
-
-            Context.GoTo(this, parameters);
-
-            Validate();
         }
 
         /// <summary>
@@ -128,8 +71,10 @@
         {
             action();
 
-            string parameters = ParametersToString(RESTParameters, queryString);
-            
+            Context.Browser.Status.AssertEquals(HttpStatusCode.OK);
+
+            string parameters = ParametersHelper.ToString(RESTParameters, queryString);
+
             Context.Forward<TPage>(this, parameters);
         }
 
@@ -160,7 +105,9 @@
         {
             action();
 
-            string parameters = ParametersToString(RESTParameters, queryString);
+            Context.Browser.Status.AssertEquals(HttpStatusCode.OK);
+
+            string parameters = ParametersHelper.ToString(RESTParameters, queryString);
 
             Context.Forward<TSuccessPage, TErrorPage>(parameters);
         }
