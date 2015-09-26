@@ -7,7 +7,7 @@
     using Page = ProSpec.Core.UI.Web.Page;
 
     /// <summary>
-    /// Interface to the Internet Explorer WatiN browser object to access elements on a page.
+    /// Interface to the FireFox WatiN browser object to access elements on a page.
     /// </summary>
     public class WatiNFireFoxBrowser : FireFox, IBrowser
     {
