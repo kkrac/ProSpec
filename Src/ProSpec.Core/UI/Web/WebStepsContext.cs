@@ -190,7 +190,7 @@
             SetCurrentPage(successPage, errorPage);
         }
 
-        protected void ShouldBeAt<T>() where T : Page
+        protected void ActiveDriverShouldBe<T>() where T : Page
         {
             try
             {
